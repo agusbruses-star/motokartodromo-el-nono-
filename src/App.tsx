@@ -12,9 +12,9 @@ function Hero() {
   return (
     <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-ink pt-[var(--header-h)]">
       <img
-        src={img('foto-19.jpg')}
-        alt="Piloto con el kart número 15 listo para salir a pista"
-        className="hero-zoom absolute inset-0 -z-20 h-[115%] w-full object-cover object-[50%_30%]"
+        src={img('foto-13.jpg')}
+        alt="Piloto con el kart número 30 acelerando en plena curva"
+        className="hero-zoom absolute inset-0 -z-20 h-[115%] w-full object-cover object-[44%_35%] lg:object-[50%_40%]"
         style={{ transform: `translate3d(0, ${y * 0.3}px, 0) scale(${1 + y * 0.0002})` }}
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/50 to-ink/20 lg:bg-gradient-to-r lg:from-ink/95 lg:via-ink/50 lg:to-ink/10" />
