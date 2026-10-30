@@ -1,1 +1,10 @@
-{}
+{
+  "description": "Explora un kartódromo y consulta las tablas de posiciones de siete categorías, con puntos y banderas argentinas, en secciones fáciles de recorrer.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
