@@ -38,10 +38,12 @@ function Header({ page }: { page: PageKey }) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${solid ? 'bg-ink/92 backdrop-blur-md' : 'bg-gradient-to-b from-ink/80 to-transparent'}`}
+      className={`fixed inset-x-0 top-0 z-50 pt-[var(--safe-top)] transition-[background-color,box-shadow] duration-300 ${
+        solid ? 'bg-ink/95 shadow-[0_1px_0_var(--color-line)] backdrop-blur-md' : 'bg-ink/95 lg:bg-transparent lg:bg-gradient-to-b lg:from-ink/80 lg:to-transparent'
+      }`}
     >
-      <div className="flex h-[68px] items-stretch">
-        <a href={href()} className="clip-slant-r flex items-center bg-red pr-14 pl-5 sm:pl-8" aria-label="Inicio">
+      <div className="flex h-16 items-stretch lg:h-[68px]">
+        <a href={href()} className="clip-slant-r flex items-center bg-red pr-12 pl-4 sm:pl-8 lg:pr-14" aria-label="Inicio">
           <Logo />
         </a>
         <nav className="ml-auto hidden items-center gap-1 pr-4 lg:flex xl:pr-6" aria-label="Principal">
@@ -59,15 +61,16 @@ function Header({ page }: { page: PageKey }) {
           ))}
           <span className="mx-3 h-6 w-px bg-white/15" />
           <a
-            href={href('contacto/')}
+            href={href('contacto/index.html')}
             className="clip-btn bg-red px-5 py-2 font-display text-[11px] font-bold tracking-[0.18em] text-white uppercase transition-colors hover:bg-white hover:text-ink"
           >
             Inscribite
           </a>
         </nav>
         <button
-          className="ml-auto grid w-[68px] place-items-center bg-red text-white lg:hidden"
+          className="ml-auto grid w-16 place-items-center bg-red text-white active:bg-red-dark lg:hidden"
           onClick={() => setOpen(true)}
+          aria-expanded={open}
           aria-label="Abrir menú"
         >
           <IconMenu />
@@ -75,26 +78,29 @@ function Header({ page }: { page: PageKey }) {
       </div>
 
       {open && (
-        <div className="page-enter fixed inset-0 z-[70] flex flex-col bg-ink lg:hidden">
-          <div className="flex h-[68px] items-stretch">
-            <span className="clip-slant-r flex items-center bg-red pr-14 pl-5">
+        <div className="page-enter fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-ink pt-[var(--safe-top)] pb-[env(safe-area-inset-bottom)] lg:hidden">
+          <div className="flex h-16 shrink-0 items-stretch">
+            <span className="clip-slant-r flex items-center bg-red pr-12 pl-4">
               <Logo />
             </span>
-            <button className="ml-auto grid w-[68px] place-items-center text-white" onClick={() => setOpen(false)} aria-label="Cerrar menú">
+            <button className="ml-auto grid w-16 place-items-center text-white" onClick={() => setOpen(false)} aria-label="Cerrar menú">
               <IconClose />
             </button>
           </div>
-          <nav className="flex flex-1 flex-col justify-center gap-2 px-8" aria-label="Principal móvil">
+          <nav className="flex flex-1 flex-col justify-center gap-1 px-6 py-6" aria-label="Principal móvil">
             {NAV.map((n, i) => (
               <a
                 key={n.key}
                 href={href(n.path)}
-                className={`flex items-baseline gap-4 border-b border-line py-3 font-display text-2xl font-black uppercase italic ${page === n.key ? 'text-red' : 'text-white'}`}
+                className={`flex min-h-14 items-center gap-4 border-b border-line py-3 font-display text-xl sm:text-2xl font-black uppercase italic ${page === n.key ? 'text-red' : 'text-white'}`}
               >
                 <span className="font-sans text-xs text-white/40 not-italic">0{i + 1}</span>
                 {n.label}
               </a>
             ))}
+            <a href={href('contacto/index.html')} className="clip-btn mt-8 bg-red py-4 text-center font-display text-xs font-bold tracking-[0.22em] text-white uppercase">
+              Inscribite
+            </a>
           </nav>
         </div>
       )}
@@ -139,7 +145,7 @@ function Footer() {
         </div>
       </div>
       <div className="border-t border-line">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-5 md:px-10">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 pt-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] md:px-10">
           <p className="font-display text-[10px] tracking-[0.2em] text-white/40 uppercase">
             © {new Date().getFullYear()} {SITE.name} · {SITE.season}
           </p>
@@ -150,7 +156,7 @@ function Footer() {
               { I: IconFacebook, l: 'Facebook', h: SITE.facebook },
               { I: IconYoutube, l: 'YouTube', h: SITE.youtube },
             ].map(({ I, l, h }) => (
-              <a key={l} href={h} aria-label={l} className="clip-btn grid h-8 w-10 place-items-center bg-red text-white transition-colors hover:bg-white hover:text-ink">
+              <a key={l} href={h} aria-label={l} className="clip-btn grid h-11 w-12 place-items-center bg-red text-white transition-colors hover:bg-white hover:text-ink">
                 <I />
               </a>
             ))}
@@ -190,7 +196,7 @@ export function SectionTitle({ kicker, title, className = '', align = 'left' }: 
 export function PageHero({ kicker, title, photo, children }: { kicker: string; title: ReactNode; photo: string; children?: ReactNode }) {
   const y = useScrollY()
   return (
-    <section className="clip-hero relative isolate overflow-hidden bg-ink pt-[68px]">
+    <section className="clip-hero relative isolate overflow-hidden bg-ink pt-[var(--header-h)]">
       <img
         src={photo}
         alt=""
@@ -198,14 +204,14 @@ export function PageHero({ kicker, title, photo, children }: { kicker: string; t
         style={{ transform: `translate3d(0, ${y * 0.25}px, 0)` }}
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/80 to-ink/30" />
-      <div className="absolute -top-10 -right-24 -z-10 h-[140%] w-40 rotate-[24deg] bg-red/90" />
-      <div className="absolute -top-10 right-24 -z-10 h-[140%] w-3 rotate-[24deg] bg-red/60" />
-      <div className="mx-auto max-w-7xl px-6 pt-20 pb-28 md:px-10 md:pt-28 md:pb-36">
+      <div className="absolute -top-10 -right-32 -z-10 h-[140%] w-32 sm:-right-24 sm:w-40 rotate-[24deg] bg-red/90" />
+      <div className="absolute -top-10 right-6 -z-10 h-[140%] w-2 sm:right-24 sm:w-3 rotate-[24deg] bg-red/60" />
+      <div className="mx-auto max-w-7xl px-5 pt-12 pb-20 sm:px-6 md:px-10 md:pt-28 md:pb-36">
         <p data-reveal className="flex items-center gap-3 font-display text-xs font-bold tracking-[0.32em] text-red uppercase">
           <span className="h-[2px] w-10 bg-red" />
           {kicker}
         </p>
-        <h1 data-reveal style={{ ['--d' as string]: '80ms' }} className="mt-4 max-w-4xl font-display text-4xl leading-[0.98] font-black text-white uppercase italic sm:text-6xl lg:text-7xl">
+        <h1 data-reveal style={{ ['--d' as string]: '80ms' }} className="mt-4 max-w-4xl font-display text-[2.4rem] leading-[0.98] break-words font-black text-white uppercase italic sm:text-6xl lg:text-7xl">
           {title}
         </h1>
         {children && (

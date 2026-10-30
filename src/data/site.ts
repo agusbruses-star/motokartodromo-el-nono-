@@ -18,12 +18,12 @@ export const SITE = {
 export type PageKey = 'inicio' | 'calendario' | 'categorias' | 'posiciones' | 'galeria' | 'contacto'
 
 export const NAV: { key: PageKey; label: string; path: string }[] = [
-  { key: 'inicio', label: 'Inicio', path: '' },
-  { key: 'calendario', label: 'Calendario', path: 'calendario/' },
-  { key: 'categorias', label: 'Categorías', path: 'categorias/' },
-  { key: 'posiciones', label: 'Posiciones', path: 'posiciones/' },
-  { key: 'galeria', label: 'Galería', path: 'galeria/' },
-  { key: 'contacto', label: 'Contacto', path: 'contacto/' },
+  { key: 'inicio', label: 'Inicio', path: 'index.html' },
+  { key: 'calendario', label: 'Calendario', path: 'calendario/index.html' },
+  { key: 'categorias', label: 'Categorías', path: 'categorias/index.html' },
+  { key: 'posiciones', label: 'Posiciones', path: 'posiciones/index.html' },
+  { key: 'galeria', label: 'Galería', path: 'galeria/index.html' },
+  { key: 'contacto', label: 'Contacto', path: 'contacto/index.html' },
 ]
 
 // Las 7 categorías del campeonato (nombres provisorios, reemplazables).

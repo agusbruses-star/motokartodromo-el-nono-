@@ -13,7 +13,7 @@ export default function Calendario() {
         Ocho fechas, todas en Argentina. Seguí el campeonato de punta a punta y no te pierdas ninguna largada.
       </PageHero>
 
-      <section className="mx-auto grid max-w-7xl gap-14 px-6 py-20 md:px-10 lg:grid-cols-[1fr_360px]">
+      <section className="mx-auto grid max-w-7xl gap-14 px-5 py-12 sm:px-6 sm:py-20 md:px-10 lg:grid-cols-[1fr_360px]">
         <div>
           <SectionTitle
             kicker="Fechas 1–8"
@@ -32,7 +32,7 @@ export default function Calendario() {
                 key={r.round}
                 data-reveal
                 style={{ ['--d' as string]: `${i * 50}ms` }}
-                className={`grid grid-cols-[64px_auto_1fr_auto] items-center gap-4 border-b border-line py-4 sm:grid-cols-[90px_60px_auto_1fr_auto] sm:gap-6 ${
+                className={`grid min-h-16 grid-cols-[56px_auto_1fr] items-center gap-3 border-b border-line py-4 sm:grid-cols-[90px_60px_auto_1fr_auto] sm:gap-6 ${
                   r.status === 'next' ? 'bg-red/10 shadow-[inset_3px_0_0_var(--color-red)]' : ''
                 } ${r.status === 'done' ? 'opacity-55' : ''}`}
               >
@@ -40,12 +40,11 @@ export default function Calendario() {
                 <span className="hidden font-display text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase sm:block">F{r.round}</span>
                 <FlagAR />
                 <span className="min-w-0">
-                  <span className="block truncate font-display text-sm font-black text-white uppercase">
-                    {r.city} <span className="font-sans font-medium text-white/50 normal-case">· {r.layout}</span>
-                  </span>
+                  <span className="block truncate font-display text-sm font-black text-white uppercase">{r.city}</span>
+                  <span className="block truncate text-xs text-white/50 sm:inline">{r.layout}</span>
                 </span>
                 <span
-                  className={`clip-btn mr-3 px-3 py-1 font-display text-[9px] font-bold tracking-[0.18em] uppercase ${
+                  className={`clip-btn col-start-3 mr-3 w-fit px-3 py-1 font-display sm:col-start-auto text-[9px] font-bold tracking-[0.18em] uppercase ${
                     r.status === 'next' ? 'bg-red text-white' : r.status === 'done' ? 'text-white/60 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)]' : 'bg-white/10 text-white/80'
                   }`}
                 >
@@ -59,7 +58,7 @@ export default function Calendario() {
 
         {next && (
           <aside data-reveal="right" className="self-start lg:sticky lg:top-28">
-            <div className="clip-card bg-white p-8 text-ink">
+            <div className="clip-card bg-white p-6 text-ink sm:p-8">
               <p className="font-display text-[10px] font-bold tracking-[0.3em] text-red uppercase">Próxima fecha</p>
               <p className="mt-3 font-display text-5xl font-black italic">{next.date}</p>
               <p className="mt-2 font-display text-sm font-bold uppercase">
@@ -72,7 +71,7 @@ export default function Calendario() {
               </p>
             </div>
             <div className="mt-6">
-              <RedButton href={href('posiciones/')}>Ver posiciones</RedButton>
+              <RedButton href={href('posiciones/index.html')}>Ver posiciones</RedButton>
             </div>
           </aside>
         )}

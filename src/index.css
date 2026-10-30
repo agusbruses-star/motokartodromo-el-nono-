@@ -15,9 +15,19 @@
 }
 
 @layer base {
+  :root {
+    --safe-top: env(safe-area-inset-top, 0px);
+    --header-h: calc(64px + var(--safe-top));
+  }
+  @media (min-width: 1024px) {
+    :root {
+      --header-h: calc(68px + var(--safe-top));
+    }
+  }
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 88px;
+    scroll-padding-top: calc(var(--header-h) + 64px);
+    -webkit-text-size-adjust: 100%;
     background: var(--color-ink);
   }
   body {
@@ -26,6 +36,11 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+  }
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   ::selection {
     background: var(--color-red);
@@ -85,6 +100,12 @@
     transform: none;
   }
 
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
   .marquee {
     animation: marquee 32s linear infinite;
   }

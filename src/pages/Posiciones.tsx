@@ -3,6 +3,7 @@ import { CALENDAR, CATEGORIES, SITE, TOTAL_ROUNDS, img } from '@/data/site'
 import { rankCategory, type RankedRow } from '@/data/compute'
 import { Layout, PageHero } from '@/components/Layout'
 import { FlagAR } from '@/components/Flag'
+import { ScrollRow } from '@/components/ScrollRow'
 
 function initialCat() {
   const q = new URLSearchParams(window.location.search).get('cat')
@@ -22,8 +23,8 @@ function Podium({ rows }: { rows: RankedRow[] }) {
             <span className="absolute top-2 right-4 font-display text-5xl font-black opacity-15 italic sm:text-7xl">{r.pos}</span>
             <FlagAR className="h-4 w-6 sm:h-5 sm:w-[30px]" />
             <p className="mt-3 font-display text-[10px] font-bold tracking-[0.2em] uppercase opacity-60">#{r.number}</p>
-            <p className="mt-1 font-display text-xs leading-tight font-black uppercase sm:text-base">{r.name}</p>
-            <p className="mt-3 font-display text-2xl font-black sm:text-4xl">
+            <p className="mt-1 font-display text-[11px] leading-tight font-black break-words uppercase sm:text-base">{r.name}</p>
+            <p className="mt-3 font-display text-xl font-black sm:text-4xl">
               {r.total}
               <span className="ml-1 text-[10px] font-bold opacity-70">PTS</span>
             </p>
@@ -69,15 +70,16 @@ export default function Posiciones() {
         Puntos por fecha de cada piloto en las siete categorías del campeonato.
       </PageHero>
 
-      <div id="tabla" className="sticky top-[68px] z-30 border-y border-line bg-ink/95 backdrop-blur-md">
-        <div ref={tabsRef} role="tablist" aria-label="Categorías" className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-6 py-3 [scrollbar-width:none] md:px-10">
+      <div id="tabla" className="sticky top-[var(--header-h)] z-30 border-y border-line bg-ink/95 backdrop-blur-md">
+        <ScrollRow label="Categorías" controls="overlay" className="mx-auto max-w-7xl" step={0.6}>
+        <div ref={tabsRef} role="tablist" aria-label="Categorías" className="flex w-max gap-1 px-5 py-2.5 sm:px-6 md:px-10">
           {CATEGORIES.map((c, i) => (
             <button
               key={c.slug}
               role="tab"
               aria-selected={cat === c.slug}
               onClick={() => select(c.slug)}
-              className={`clip-btn shrink-0 px-4 py-2 font-display text-[11px] font-bold tracking-[0.16em] whitespace-nowrap uppercase transition-colors ${
+              className={`clip-btn min-h-11 shrink-0 snap-center px-4 py-2 font-display text-[11px] font-bold tracking-[0.16em] whitespace-nowrap uppercase transition-colors ${
                 cat === c.slug ? 'bg-red text-white' : 'text-white/60 hover:bg-white/5 hover:text-white'
               }`}
             >
@@ -86,21 +88,55 @@ export default function Posiciones() {
             </button>
           ))}
         </div>
+        </ScrollRow>
       </div>
 
-      <section key={cat} className="mx-auto max-w-7xl px-6 py-16 md:px-10">
+      <section key={cat} className="mx-auto max-w-7xl px-5 py-12 sm:px-6 sm:py-16 md:px-10">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-end">
           <div data-reveal>
             <p className="font-display text-[11px] font-bold tracking-[0.3em] text-red uppercase">
               {category.engine} · {category.age}
             </p>
-            <h2 className="mt-3 font-display text-4xl font-black text-white uppercase italic sm:text-6xl">{category.name}</h2>
+            <h2 className="mt-3 font-display text-[2.2rem] leading-none font-black break-words text-white uppercase italic sm:text-6xl">{category.name}</h2>
             <p className="mt-4 max-w-md text-white/60">{category.description}</p>
           </div>
           <Podium rows={rows} />
         </div>
 
-        <div data-reveal className="mt-14 overflow-x-auto border border-line bg-coal">
+        <ol className="mt-10 space-y-2 md:hidden" aria-label={`Posiciones ${category.name}`}>
+          {rows.map((r) => (
+            <li key={r.number} className={`border-l-[3px] bg-coal p-4 ${r.pos === 1 ? 'border-red' : r.pos <= 3 ? 'border-white' : 'border-line'}`}>
+              <div className="flex items-center gap-3">
+                <span className={`clip-btn grid h-9 w-11 shrink-0 place-items-center font-display text-sm font-black ${r.pos === 1 ? 'bg-red text-white' : r.pos <= 3 ? 'bg-white text-ink' : 'bg-white/10 text-white'}`}>{r.pos}</span>
+                <FlagAR className="h-4 w-6" />
+                <div className="min-w-0 flex-1">
+                  <p className="truncate font-display text-[13px] font-bold text-white uppercase">{r.name}</p>
+                  <p className="truncate text-xs text-white/45">
+                    #{r.number} · {r.city}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <p className="font-display text-xl leading-none font-black text-white tabular-nums">{r.total}</p>
+                  <p className="mt-1 text-[10px] text-white/40 tabular-nums">{r.gap === 0 ? 'PTS · líder' : `PTS · -${r.gap}`}</p>
+                </div>
+              </div>
+              <div className="mt-3 grid grid-cols-8 gap-1">
+                {Array.from({ length: TOTAL_ROUNDS }).map((_, i) => {
+                  const p = r.points[i]
+                  const future = i >= played
+                  return (
+                    <div key={i} className={`py-1 text-center ${p === 25 ? 'bg-red/20' : 'bg-white/[0.04]'}`}>
+                      <p className="text-[9px] text-white/35">F{i + 1}</p>
+                      <p className={`text-xs tabular-nums ${p === 25 ? 'font-bold text-red' : future ? 'text-white/20' : 'text-white/80'}`}>{future ? '·' : p == null ? '—' : p}</p>
+                    </div>
+                  )
+                })}
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <ScrollRow label={`Tabla ${category.name}`} className="mt-14 hidden md:block" innerClassName="border border-line bg-coal snap-none">
           <table className="w-full min-w-[760px] border-collapse text-sm">
             <thead>
               <tr className="bg-black font-display text-[10px] tracking-[0.18em] text-white/50 uppercase">
@@ -153,7 +189,7 @@ export default function Posiciones() {
               ))}
             </tbody>
           </table>
-        </div>
+        </ScrollRow>
         <p className="mt-4 text-xs text-white/40">
           Puntaje por fecha: 25 · 20 · 16 · 13 · 11 · 10 · 9 · 8 · 7 · 6 · 5 · 4 · 3. En rojo, victorias. "—" indica que el piloto no participó.
         </p>

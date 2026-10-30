@@ -27,7 +27,7 @@ export default function Galeria() {
         Las mejores imágenes del campeonato: largadas, boxes y la gente que hace posible cada fecha.
       </PageHero>
 
-      <section className="mx-auto max-w-7xl px-6 py-20 md:px-10">
+      <section className="mx-auto max-w-7xl px-5 py-12 sm:px-6 sm:py-20 md:px-10">
         <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
           {GALLERY.map((g, i) => (
             <button
@@ -51,7 +51,7 @@ export default function Galeria() {
 
       {open !== null && (
         <div className="page-enter fixed inset-0 z-[80] flex items-center justify-center bg-black/95 p-4" onClick={() => setOpen(null)} role="dialog" aria-modal="true" aria-label={GALLERY[open].alt}>
-          <button className="absolute top-4 right-4 grid size-12 place-items-center bg-red text-white" aria-label="Cerrar">
+          <button className="absolute top-[max(1rem,env(safe-area-inset-top))] right-4 grid size-12 place-items-center bg-red text-white" aria-label="Cerrar">
             <IconClose />
           </button>
           <img src={img(GALLERY[open].src)} alt={GALLERY[open].alt} className="max-h-[85vh] max-w-full object-contain" onClick={(e) => e.stopPropagation()} />

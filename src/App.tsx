@@ -5,28 +5,29 @@ import { TrackMap } from '@/components/TrackMap'
 import { CategoryRail } from '@/components/CategoryRail'
 import { FlagAR } from '@/components/Flag'
 import { useScrollY } from '@/components/useScrollEffects'
+import { ScrollRow } from '@/components/ScrollRow'
 
 function Hero() {
   const y = useScrollY()
   return (
-    <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-ink">
+    <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-ink pt-[var(--header-h)]">
       <img
         src={img('foto-13.jpg')}
         alt="Kart número 30 en plena curva"
         className="absolute inset-0 -z-20 h-[115%] w-full object-cover object-[60%_40%]"
         style={{ transform: `translate3d(0, ${y * 0.3}px, 0) scale(${1 + y * 0.0002})` }}
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/95 via-ink/55 to-transparent" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/95 via-ink/60 to-ink/10" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-1/2 bg-gradient-to-t from-ink to-transparent" />
-      <div className="absolute top-[68px] right-0 -z-10 hidden h-[calc(100%-68px)] w-[22vw] origin-top-right skew-x-[-14deg] bg-red/85 mix-blend-multiply lg:block" />
+      <div className="absolute top-[var(--header-h)] right-0 -z-10 hidden h-[calc(100%-var(--header-h))] w-[22vw] origin-top-right skew-x-[-14deg] bg-red/85 mix-blend-multiply lg:block" />
 
       <p className="absolute top-24 right-6 hidden font-display text-sm font-black tracking-[0.15em] text-white md:block md:right-10">
         {SITE.name} <span className="text-red">2026</span>
       </p>
 
-      <div className="mx-auto w-full max-w-7xl px-6 pt-32 pb-24 md:px-10 md:pb-32" style={{ transform: `translate3d(0, ${y * -0.12}px, 0)`, opacity: Math.max(0, 1 - y / 700) }}>
+      <div className="mx-auto w-full max-w-7xl px-5 pt-16 pb-16 sm:px-6 md:px-10 md:pb-32" style={{ transform: `translate3d(0, ${y * -0.12}px, 0)`, opacity: Math.max(0, 1 - y / 700) }}>
         <p data-reveal className="font-display text-sm font-bold tracking-[0.24em] text-red uppercase sm:text-base">{SITE.season}</p>
-        <h1 data-reveal style={{ ['--d' as string]: '100ms' }} className="mt-3 font-display text-[13vw] leading-[0.9] font-black text-white uppercase sm:text-7xl lg:text-[104px]">
+        <h1 data-reveal style={{ ['--d' as string]: '100ms' }} className="mt-3 font-display text-[12.5vw] leading-[0.92] font-black text-white uppercase sm:text-7xl lg:text-[104px]">
           Pasión
           <br />
           <span className="italic">sobre tierra</span>
@@ -34,9 +35,9 @@ function Hero() {
         <p data-reveal style={{ ['--d' as string]: '200ms' }} className="mt-6 max-w-md text-base text-white/75 sm:text-lg">
           Siete categorías, ocho fechas y un solo objetivo: cruzar primero la bandera a cuadros.
         </p>
-        <div data-reveal style={{ ['--d' as string]: '300ms' }} className="mt-8 flex flex-wrap gap-3">
-          <RedButton href={href('posiciones/')}>Ver posiciones</RedButton>
-          <RedButton href={href('calendario/')} variant="outline">
+        <div data-reveal style={{ ['--d' as string]: '300ms' }} className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap [&>a]:justify-center">
+          <RedButton href={href('posiciones/index.html')}>Ver posiciones</RedButton>
+          <RedButton href={href('calendario/index.html')} variant="outline">
             Calendario
           </RedButton>
         </div>
@@ -57,10 +58,10 @@ function EventStrip() {
   return (
     <section className="relative grid lg:grid-cols-[1.35fr_1fr]">
       <div className="relative bg-white text-ink">
-        <div className="grid gap-8 px-6 py-12 sm:grid-cols-[auto_1fr] md:px-10 lg:py-14 lg:pr-28">
+        <div className="grid gap-6 px-5 py-10 sm:grid-cols-[auto_1fr] sm:gap-8 sm:px-6 md:px-10 lg:py-14 lg:pr-28">
           <div data-reveal="left">
             <h2 className="font-display text-2xl font-black tracking-tight">Próxima fecha</h2>
-            <TrackMap className="mt-6 w-64 text-red" />
+            <TrackMap className="mt-4 w-full max-w-64 text-red sm:mt-6" />
           </div>
           <div data-reveal style={{ ['--d' as string]: '120ms' }} className="self-center">
             <p className="font-sans text-sm font-semibold text-red italic">
@@ -76,7 +77,7 @@ function EventStrip() {
               {SITE.address}
             </p>
             <div className="mt-6">
-              <RedButton href={href('calendario/')}>Detalles</RedButton>
+              <RedButton href={href('calendario/index.html')}>Detalles</RedButton>
             </div>
           </div>
         </div>
@@ -87,7 +88,7 @@ function EventStrip() {
       <div className="relative isolate overflow-hidden bg-graphite">
         <img src={img('foto-30.jpg')} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30 grayscale" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/70 to-ink/30" />
-        <div data-reveal="right" className="px-6 py-12 md:px-10 lg:py-14">
+        <div data-reveal="right" className="px-5 py-10 sm:px-6 md:px-10 lg:py-14">
           <p className="font-display text-sm font-bold tracking-[0.2em] text-red uppercase">Sobre</p>
           <h2 className="font-display text-2xl font-black text-white uppercase">El kartódromo</h2>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-white/70">
@@ -114,9 +115,9 @@ function EventStrip() {
 
 function Leaders() {
   return (
-    <section className="relative overflow-hidden bg-ink py-24">
+    <section className="relative overflow-hidden bg-ink py-16 sm:py-24">
       <div className="stripes-red absolute top-0 right-0 h-2 w-1/2 opacity-80" />
-      <div className="mx-auto max-w-7xl px-6 md:px-10">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 md:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionTitle
             kicker="Tras 5 fechas"
@@ -129,7 +130,7 @@ function Leaders() {
             }
           />
           <div data-reveal>
-            <RedButton href={href('posiciones/')} variant="outline">
+            <RedButton href={href('posiciones/index.html')} variant="outline">
               Tabla completa
             </RedButton>
           </div>
@@ -141,10 +142,10 @@ function Leaders() {
             return (
               <a
                 key={c.slug}
-                href={href(`posiciones/?cat=${c.slug}`)}
+                href={href(`posiciones/index.html?cat=${c.slug}`)}
                 data-reveal
                 style={{ ['--d' as string]: `${i * 60}ms` }}
-                className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 border-b border-line py-4 transition-colors hover:bg-graphite sm:grid-cols-[150px_auto_1fr_auto_auto] sm:gap-6 sm:px-4"
+                className="group grid min-h-16 grid-cols-[auto_1fr_auto] items-center gap-3 border-b border-line py-3 active:bg-graphite sm:gap-4 sm:py-4 transition-colors hover:bg-graphite sm:grid-cols-[150px_auto_1fr_auto_auto] sm:gap-6 sm:px-4"
               >
                 <span className="hidden font-display text-[11px] font-bold tracking-[0.2em] text-white/50 uppercase sm:block">{c.name}</span>
                 <span className="clip-btn grid h-9 w-12 place-items-center bg-red font-display text-sm font-black text-white italic">{l.number}</span>
@@ -170,21 +171,23 @@ function Leaders() {
 }
 
 function GalleryStrip() {
-  const y = useScrollY()
-  const pics = GALLERY.slice(0, 6)
   return (
-    <section className="overflow-hidden bg-coal py-24">
-      <div className="mx-auto mb-12 flex max-w-7xl flex-wrap items-end justify-between gap-6 px-6 md:px-10">
+    <section className="overflow-hidden bg-coal py-16 sm:py-24">
+      <div className="mx-auto mb-8 flex max-w-7xl flex-wrap items-end justify-between gap-6 px-5 sm:mb-12 sm:px-6 md:px-10">
         <SectionTitle kicker="Galería" title="Desde el paddock" />
         <div data-reveal>
-          <RedButton href={href('galeria/')}>Ver galería</RedButton>
+          <RedButton href={href('galeria/index.html')}>Ver galería</RedButton>
         </div>
       </div>
-      <div className="flex w-max gap-4 px-6" style={{ transform: `translate3d(${-y * 0.12}px,0,0)` }}>
-        {[...pics, ...pics].map((p, i) => (
-          <img key={i} src={img(p.src)} alt={i < pics.length ? p.alt : ''} className={`h-64 w-96 object-cover sm:h-80 sm:w-[30rem] ${i % 2 ? 'mt-10' : ''}`} loading="lazy" />
-        ))}
-      </div>
+      <ScrollRow label="Fotos del paddock">
+        <div className="flex w-max gap-3 px-5 sm:gap-4 sm:px-6 md:px-10">
+          {GALLERY.map((p, i) => (
+            <a key={p.src} href={href('galeria/index.html')} className="block shrink-0 snap-start scroll-ml-5 overflow-hidden">
+              <img src={img(p.src)} alt={p.alt} loading="lazy" className={`h-56 w-[80vw] max-w-[30rem] object-cover transition duration-700 hover:scale-105 sm:h-80 ${i % 2 ? 'sm:mt-10' : ''}`} />
+            </a>
+          ))}
+        </div>
+      </ScrollRow>
     </section>
   )
 }
@@ -210,7 +213,7 @@ function CTA() {
   return (
     <section className="relative isolate overflow-hidden bg-red">
       <img src={img('foto-21.jpg')} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-25 mix-blend-multiply" />
-      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-6 py-20 md:flex-row md:items-center md:px-10">
+      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-5 py-16 sm:px-6 sm:py-20 md:flex-row md:items-center md:px-10">
         <h2 data-reveal className="font-display text-3xl leading-tight font-black text-white uppercase italic sm:text-5xl">
           ¿Listo para
           <br />
@@ -219,7 +222,7 @@ function CTA() {
         <div data-reveal style={{ ['--d' as string]: '120ms' }} className="max-w-sm">
           <p className="text-white/85">Inscripciones abiertas para todas las categorías. Consultá por alquiler de karts y días de prueba.</p>
           <div className="mt-6">
-            <RedButton href={href('contacto/')} variant="dark">
+            <RedButton href={href('contacto/index.html')} variant="dark">
               Contactanos
             </RedButton>
           </div>
