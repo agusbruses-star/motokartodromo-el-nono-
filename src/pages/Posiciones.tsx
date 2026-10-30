@@ -10,7 +10,7 @@ function initialCat() {
   return CATEGORIES.some((c) => c.slug === q) ? q! : CATEGORIES[0].slug
 }
 
-const podiumStyle = ['bg-red text-white', 'bg-white text-ink', 'bg-graphite text-white']
+const podiumStyle = ['bg-amarillo text-ink', 'bg-white text-ink', 'bg-celeste text-ink']
 
 function Podium({ rows }: { rows: RankedRow[] }) {
   const order = [rows[1], rows[0], rows[2]].filter(Boolean)
@@ -105,9 +105,9 @@ export default function Posiciones() {
 
         <ol className="mt-10 space-y-2 md:hidden" aria-label={`Posiciones ${category.name}`}>
           {rows.map((r) => (
-            <li key={r.number} className={`border-l-[3px] bg-coal p-4 ${r.pos === 1 ? 'border-red' : r.pos <= 3 ? 'border-white' : 'border-line'}`}>
+            <li key={r.number} className={`border-l-[3px] bg-coal p-4 ${r.pos === 1 ? 'border-amarillo' : r.pos === 2 ? 'border-white' : r.pos === 3 ? 'border-celeste' : 'border-line'}`}>
               <div className="flex items-center gap-3">
-                <span className={`clip-btn grid h-9 w-11 shrink-0 place-items-center font-display text-sm font-black ${r.pos === 1 ? 'bg-red text-white' : r.pos <= 3 ? 'bg-white text-ink' : 'bg-white/10 text-white'}`}>{r.pos}</span>
+                <span className={`clip-btn grid h-9 w-11 shrink-0 place-items-center font-display text-sm font-black ${r.pos === 1 ? 'bg-amarillo text-ink' : r.pos === 2 ? 'bg-white text-ink' : r.pos === 3 ? 'bg-celeste text-ink' : 'bg-white/10 text-white'}`}>{r.pos}</span>
                 <FlagAR className="h-4 w-6" />
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-display text-[13px] font-bold text-white uppercase">{r.name}</p>
@@ -125,9 +125,9 @@ export default function Posiciones() {
                   const p = r.points[i]
                   const future = i >= played
                   return (
-                    <div key={i} className={`py-1 text-center ${p === 25 ? 'bg-red/20' : 'bg-white/[0.04]'}`}>
+                    <div key={i} className={`py-1 text-center ${p === 25 ? 'bg-verde/15' : 'bg-white/[0.04]'}`}>
                       <p className="text-[9px] text-white/35">F{i + 1}</p>
-                      <p className={`text-xs tabular-nums ${p === 25 ? 'font-bold text-celeste' : future ? 'text-white/20' : 'text-white/80'}`}>{future ? '·' : p == null ? '—' : p}</p>
+                      <p className={`text-xs tabular-nums ${p === 25 ? 'font-bold text-verde' : future ? 'text-white/20' : 'text-white/80'}`}>{future ? '·' : p == null ? '—' : p}</p>
                     </div>
                   )
                 })}
@@ -158,7 +158,7 @@ export default function Posiciones() {
                   <td className="py-3 pl-4">
                     <span
                       className={`clip-btn inline-grid h-7 w-9 place-items-center font-display text-xs font-black ${
-                        r.pos === 1 ? 'bg-red text-white' : r.pos === 2 ? 'bg-white text-ink' : r.pos === 3 ? 'bg-white/25 text-white' : 'text-white/70'
+                        r.pos === 1 ? 'bg-amarillo text-ink' : r.pos === 2 ? 'bg-white text-ink' : r.pos === 3 ? 'bg-celeste text-ink' : 'text-white/70'
                       }`}
                     >
                       {r.pos}
@@ -178,7 +178,7 @@ export default function Posiciones() {
                     const p = r.points[i]
                     const future = i >= played
                     return (
-                      <td key={i} className={`py-3 text-center tabular-nums ${p === 25 ? 'font-bold text-celeste' : 'text-white/70'}`}>
+                      <td key={i} className={`py-3 text-center tabular-nums ${p === 25 ? 'font-bold text-verde' : 'text-white/70'}`}>
                         {future ? <span className="text-white/15">·</span> : p == null ? <span className="text-white/25">—</span> : p}
                       </td>
                     )
@@ -191,7 +191,7 @@ export default function Posiciones() {
           </table>
         </ScrollRow>
         <p className="mt-4 text-xs text-white/40">
-          Puntaje por fecha: 25 · 20 · 16 · 13 · 11 · 10 · 9 · 8 · 7 · 6 · 5 · 4 · 3. En rojo, victorias. "—" indica que el piloto no participó.
+          Puntaje por fecha: 25 · 20 · 16 · 13 · 11 · 10 · 9 · 8 · 7 · 6 · 5 · 4 · 3. En verde, victorias. "—" indica que el piloto no participó.
         </p>
       </section>
     </Layout>

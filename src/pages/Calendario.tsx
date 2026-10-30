@@ -33,8 +33,8 @@ export default function Calendario() {
                 data-reveal
                 style={{ ['--d' as string]: `${i * 50}ms` }}
                 className={`grid min-h-16 grid-cols-[56px_auto_1fr] items-center gap-3 border-b border-line py-4 sm:grid-cols-[90px_60px_auto_1fr_auto] sm:gap-6 ${
-                  r.status === 'next' ? 'bg-red/10 shadow-[inset_3px_0_0_var(--color-red)]' : ''
-                } ${r.status === 'done' ? 'opacity-55' : ''}`}
+                  r.status === 'next' ? 'bg-amarillo/10 shadow-[inset_3px_0_0_var(--color-amarillo)]' : ''
+                } ${r.status === 'done' ? 'opacity-70' : ''}`}
               >
                 <span className="pl-3 font-display text-xs font-bold text-white/80 sm:text-sm">{r.date}</span>
                 <span className="hidden font-display text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase sm:block">F{r.round}</span>
@@ -45,7 +45,7 @@ export default function Calendario() {
                 </span>
                 <span
                   className={`clip-btn col-start-3 mr-3 w-fit px-3 py-1 font-display sm:col-start-auto text-[9px] font-bold tracking-[0.18em] uppercase ${
-                    r.status === 'next' ? 'bg-red text-white' : r.status === 'done' ? 'text-white/60 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)]' : 'bg-white/10 text-white/80'
+                    r.status === 'next' ? 'bg-amarillo text-ink' : r.status === 'done' ? 'text-verde shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)]' : 'bg-white/10 text-white/80'
                   }`}
                 >
                   {statusLabel[r.status]}

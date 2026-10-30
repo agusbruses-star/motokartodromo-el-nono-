@@ -13,6 +13,10 @@
   --color-graphite: #0f2142;
   --color-line: #1b2f54;
   --color-celeste: #3cc3ee;
+  /* Verde y amarillo del emblema El Nono */
+  --color-verde: #3fd01c;
+  --color-verde-dark: #2a9a10;
+  --color-amarillo: #f2d21b;
   --color-sol: #f6b40e;
 }
 
@@ -87,6 +91,10 @@
   .checker {
     background-image: conic-gradient(#fff 25%, #0000 0 50%, #fff 0 75%, #0000 0);
     background-size: 12px 12px;
+  }
+  /* Franja de marca con los colores del emblema */
+  .brand-stripe {
+    background: linear-gradient(90deg, var(--color-red) 0 25%, var(--color-celeste) 25% 50%, var(--color-verde) 50% 75%, var(--color-amarillo) 75% 100%);
   }
   .hairline-red {
     background: linear-gradient(90deg, var(--color-red), transparent);

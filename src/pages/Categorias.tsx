@@ -2,6 +2,7 @@ import { CATEGORIES, href, img } from '@/data/site'
 import { rankCategory } from '@/data/compute'
 import { Layout, PageHero } from '@/components/Layout'
 import { FlagAR } from '@/components/Flag'
+import { BADGE } from '@/components/CategoryRail'
 
 export default function Categorias() {
   return (
@@ -20,10 +21,10 @@ export default function Categorias() {
                 <img src={img(c.photo)} alt={`Categoría ${c.name}`} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
                 <div className={`absolute top-0 flex items-stretch ${flip ? 'right-0' : 'left-0'}`}>
-                  <span className="grid w-16 place-items-center bg-red py-3 font-display text-xl font-black text-white">0{i + 1}</span>
+                  <span className={`grid w-16 place-items-center py-3 font-display text-xl font-black ${BADGE[i % BADGE.length]}`}>0{i + 1}</span>
                   <span className="grid place-items-center bg-ink/80 px-3 font-display text-[9px] font-bold tracking-[0.24em] text-white/70 uppercase backdrop-blur-sm">de 07</span>
                 </div>
-                <span className={`absolute bottom-0 h-1 w-1/3 bg-red transition-all duration-700 group-hover:w-full ${flip ? 'right-0' : 'left-0'}`} />
+                <span className={`absolute bottom-0 h-1 w-1/3 bg-amarillo transition-all duration-700 group-hover:w-full ${flip ? 'right-0' : 'left-0'}`} />
               </div>
               <div data-reveal className="flex flex-col justify-center p-6 sm:p-8 md:p-12">
                 <p className="font-display text-[10px] font-bold tracking-[0.3em] text-celeste uppercase">

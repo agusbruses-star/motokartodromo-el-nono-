@@ -33,7 +33,7 @@ function Hero() {
       </div>
 
       <div className="mx-auto w-full max-w-7xl px-5 pt-16 pb-16 sm:px-6 md:px-10 md:pb-32" style={{ transform: `translate3d(0, ${y * -0.12}px, 0)`, opacity: Math.max(0, 1 - y / 700) }}>
-        <p data-reveal className="font-display text-sm font-bold tracking-[0.24em] text-celeste uppercase sm:text-base">{SITE.season}</p>
+        <p data-reveal className="font-display text-sm font-bold tracking-[0.24em] text-amarillo uppercase sm:text-base">{SITE.season}</p>
         <h1 data-reveal style={{ ['--d' as string]: '100ms' }} className="mt-3 font-display text-[12.5vw] leading-[0.92] font-black text-white uppercase sm:text-7xl lg:text-[104px]">
           Pasión
           <br />
@@ -117,7 +117,7 @@ function EventStrip() {
 function Leaders() {
   return (
     <section className="relative overflow-hidden bg-ink py-16 sm:py-24">
-      <div className="hairline-red absolute top-0 left-0 h-px w-2/3" />
+      <div className="brand-stripe absolute top-0 left-0 h-1 w-full sm:w-2/3" />
       <div className="mx-auto max-w-7xl px-5 sm:px-6 md:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionTitle
@@ -157,10 +157,10 @@ function Leaders() {
                   </span>
                   <span className="mt-1 block text-xs text-white/45 sm:hidden">{c.name}</span>
                 </span>
-                <span className="hidden text-xs text-white/40 md:block">+{top[1]?.gap ?? 0} pts sobre el 2.º</span>
+                <span className="hidden text-xs text-verde md:block">+{top[1]?.gap ?? 0} pts sobre el 2.º</span>
                 <span className="text-right font-display text-lg font-black text-white">
                   {l.total}
-                  <span className="ml-1 text-[10px] font-bold text-celeste">PTS</span>
+                  <span className="ml-1 text-[10px] font-bold text-amarillo">PTS</span>
                 </span>
               </a>
             )
@@ -223,7 +223,7 @@ function CTA() {
         <div data-reveal style={{ ['--d' as string]: '120ms' }} className="max-w-sm">
           <p className="text-white/85">Inscripciones abiertas para todas las categorías. Consultá por alquiler de karts y días de prueba.</p>
           <div className="mt-6">
-            <RedButton href={href('contacto/index.html')} variant="dark">
+            <RedButton href={href('contacto/index.html')} variant="amarillo">
               Contactanos
             </RedButton>
           </div>

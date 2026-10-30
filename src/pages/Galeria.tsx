@@ -154,7 +154,7 @@ export default function Galeria() {
               >
                 <img src={img(g.src)} alt={g.alt} loading="lazy" className={`w-full object-cover transition duration-700 group-hover:scale-105 ${i % 3 === 1 ? 'aspect-[3/4]' : 'aspect-[4/3]'}`} />
                 <span className="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent" />
-                <span className={`clip-btn absolute top-3 left-3 px-3 py-1 font-display text-[9px] font-bold tracking-[0.18em] uppercase ${g.type === 'carrera' ? 'bg-red text-white' : 'bg-white text-ink'}`}>
+                <span className={`clip-btn absolute top-3 left-3 px-3 py-1 font-display text-[9px] font-bold tracking-[0.18em] uppercase ${g.type === 'carrera' ? 'bg-red text-white' : 'bg-verde text-ink'}`}>
                   {g.type === 'carrera' ? 'Carrera' : 'Prueba'}
                 </span>
                 <span className="absolute bottom-0 left-0 h-1 w-0 bg-red transition-all duration-500 group-hover:w-full" />

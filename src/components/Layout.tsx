@@ -68,7 +68,7 @@ function Header({ page }: { page: PageKey }) {
               })}
               <a
                 href={href('contacto/index.html')}
-                className="clip-btn ml-4 bg-red px-5 py-2.5 font-display text-[11px] font-bold tracking-[0.18em] text-white uppercase transition-colors hover:bg-white hover:text-ink"
+                className="clip-btn ml-4 bg-verde px-5 py-2.5 font-display text-[11px] font-bold tracking-[0.18em] text-ink uppercase transition-colors hover:bg-amarillo"
               >
                 Inscribite
               </a>
@@ -103,13 +103,13 @@ function Header({ page }: { page: PageKey }) {
               <a
                 key={n.key}
                 href={href(n.path)}
-                className={`flex min-h-14 items-center gap-4 border-b border-line py-3 font-display text-xl sm:text-2xl font-black uppercase italic ${page === n.key ? 'text-celeste' : 'text-white'}`}
+                className={`flex min-h-14 items-center gap-4 border-b border-line py-3 font-display text-xl sm:text-2xl font-black uppercase italic ${page === n.key ? 'text-amarillo' : 'text-white'}`}
               >
                 <span className="font-sans text-xs text-white/40 not-italic">0{i + 1}</span>
                 {n.label}
               </a>
             ))}
-            <a href={href('contacto/index.html')} className="clip-btn mt-8 bg-red py-4 text-center font-display text-xs font-bold tracking-[0.22em] text-white uppercase">
+            <a href={href('contacto/index.html')} className="clip-btn mt-8 bg-verde py-4 text-center text-ink! font-display text-xs font-bold tracking-[0.22em] text-white uppercase">
               Inscribite
             </a>
           </nav>
@@ -122,7 +122,8 @@ function Header({ page }: { page: PageKey }) {
 
 function Footer() {
   return (
-    <footer className="relative border-t-4 border-red bg-black">
+    <footer className="relative bg-black">
+      <div className="brand-stripe h-1" aria-hidden />
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-[1.4fr_1fr_1fr] md:px-10">
         <div>
           <Logo size="lg" />
@@ -195,7 +196,7 @@ export function SectionTitle({ kicker, title, className = '', align = 'left' }: 
   return (
     <div data-reveal className={`${align === 'center' ? 'text-center' : ''} ${className}`}>
       <p className={`flex items-center gap-3 font-display text-[11px] font-bold tracking-[0.32em] text-celeste uppercase ${align === 'center' ? 'justify-center' : ''}`}>
-        <span className="h-[2px] w-8 bg-red" />
+        <span className="h-[2px] w-8 bg-amarillo" />
         {kicker}
       </p>
       <h2 className="mt-3 font-display text-3xl leading-[1.05] font-black text-white uppercase italic sm:text-4xl lg:text-5xl">{title}</h2>
@@ -219,7 +220,7 @@ export function PageHero({ kicker, title, photo, children }: { kicker: string; t
       <div className="absolute inset-x-0 bottom-0 -z-10 h-px bg-gradient-to-r from-red via-red/40 to-transparent" />
       <div className="mx-auto max-w-7xl px-5 pt-12 pb-20 sm:px-6 md:px-10 md:pt-28 md:pb-36">
         <p data-reveal className="flex items-center gap-3 font-display text-xs font-bold tracking-[0.32em] text-celeste uppercase">
-          <span className="h-[2px] w-10 bg-red" />
+          <span className="h-[2px] w-10 bg-amarillo" />
           {kicker}
         </p>
         <h1 data-reveal style={{ ['--d' as string]: '80ms' }} className="mt-4 max-w-4xl font-display text-[2.4rem] leading-[0.98] break-words font-black text-white uppercase italic sm:text-6xl lg:text-7xl">
@@ -235,10 +236,12 @@ export function PageHero({ kicker, title, photo, children }: { kicker: string; t
   )
 }
 
-export function RedButton({ href: h, children, variant = 'red' }: { href: string; children: ReactNode; variant?: 'red' | 'outline' | 'dark' }) {
+export function RedButton({ href: h, children, variant = 'red' }: { href: string; children: ReactNode; variant?: 'red' | 'outline' | 'dark' | 'verde' | 'amarillo' }) {
   const styles = {
     red: 'bg-red text-white hover:bg-white hover:text-ink',
     dark: 'bg-ink text-white hover:bg-red',
+    verde: 'bg-verde text-ink hover:bg-white',
+    amarillo: 'bg-amarillo text-ink hover:bg-white',
     outline: 'text-white shadow-[inset_0_0_0_1.5px_white] hover:bg-white hover:text-ink',
   }[variant]
   return (
