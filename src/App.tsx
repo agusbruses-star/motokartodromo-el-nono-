@@ -116,7 +116,7 @@ function EventStrip() {
 function Leaders() {
   return (
     <section className="relative overflow-hidden bg-ink py-16 sm:py-24">
-      <div className="stripes-red absolute top-0 right-0 h-2 w-1/2 opacity-80" />
+      <div className="hairline-red absolute top-0 left-0 h-px w-2/3" />
       <div className="mx-auto max-w-7xl px-5 sm:px-6 md:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionTitle

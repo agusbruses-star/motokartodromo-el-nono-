@@ -51,12 +51,12 @@ function Header({ page }: { page: PageKey }) {
       {/* Solid strip behind the iPhone notch / status bar so content never shows through */}
       <div className="pointer-events-none fixed inset-x-0 top-0 z-[55] h-[var(--safe-top)] bg-ink" aria-hidden />
       <header
-        className={`header-anim fixed inset-x-0 top-[var(--safe-top)] z-50 ${hidden && !open ? 'header-hidden' : ''} ${floating ? 'max-lg:top-[calc(var(--safe-top)+8px)] max-lg:px-3' : ''}`}
+        className={`header-anim fixed inset-x-0 top-[var(--safe-top)] z-50 ${hidden && !open ? 'header-hidden' : ''} ${floating ? 'top-[calc(var(--safe-top)+8px)] px-3 lg:top-[calc(var(--safe-top)+14px)] lg:px-8' : ''}`}
       >
       <div
-        className={`flex h-16 items-stretch overflow-hidden transition-[background-color,box-shadow,border-radius] duration-500 lg:h-[68px] ${
+        className={`flex h-16 items-stretch overflow-hidden transition-[background-color,box-shadow,border-radius] duration-500 lg:h-[72px] ${
           solid ? 'bg-ink/95 shadow-[0_1px_0_var(--color-line)] backdrop-blur-md' : 'bg-ink/80 backdrop-blur-sm lg:bg-transparent lg:bg-gradient-to-b lg:from-ink/80 lg:to-transparent lg:backdrop-blur-none'
-        } ${floating ? 'max-lg:h-14 max-lg:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8),0_0_0_1px_var(--color-line)]' : ''}`}
+        } ${floating ? 'mx-auto h-14 max-w-7xl shadow-[0_18px_40px_-14px_rgba(0,0,0,0.85),0_0_0_1px_var(--color-line)] lg:h-16' : ''}`}
       >
         <a href={href()} className="clip-slant-r flex items-center bg-red pr-12 pl-4 sm:pl-8 lg:pr-14" aria-label="Inicio">
           <Logo />
@@ -91,7 +91,7 @@ function Header({ page }: { page: PageKey }) {
           <IconMenu />
         </button>
       </div>
-      <span className="header-line block h-[2px] origin-left bg-red" style={{ transform: `scaleX(${floating ? 1 : 0})` }} aria-hidden />
+      <span className={`header-line block h-[2px] origin-left bg-red ${floating ? 'mx-auto max-w-7xl' : ''}`} style={{ transform: `scaleX(${floating ? 1 : 0})` }} aria-hidden />
 
       {open && (
         <div className="page-enter fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-ink pt-[var(--safe-top)] pb-[env(safe-area-inset-bottom)] lg:hidden">
@@ -221,8 +221,8 @@ export function PageHero({ kicker, title, photo, children }: { kicker: string; t
         style={{ transform: `translate3d(0, ${y * 0.25}px, 0)` }}
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/80 to-ink/30" />
-      <div className="absolute -top-10 -right-32 -z-10 h-[140%] w-32 sm:-right-24 sm:w-40 rotate-[24deg] bg-red/90" />
-      <div className="absolute -top-10 right-6 -z-10 h-[140%] w-2 sm:right-24 sm:w-3 rotate-[24deg] bg-red/60" />
+      <div className="absolute inset-y-0 right-0 -z-10 hidden w-[18vw] origin-bottom skew-x-[-14deg] translate-x-1/3 bg-red md:block" />
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-px bg-gradient-to-r from-red via-red/40 to-transparent" />
       <div className="mx-auto max-w-7xl px-5 pt-12 pb-20 sm:px-6 md:px-10 md:pt-28 md:pb-36">
         <p data-reveal className="flex items-center gap-3 font-display text-xs font-bold tracking-[0.32em] text-red uppercase">
           <span className="h-[2px] w-10 bg-red" />

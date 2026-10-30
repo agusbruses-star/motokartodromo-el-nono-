@@ -16,12 +16,18 @@
 
 @layer base {
   :root {
-    --safe-top: env(safe-area-inset-top, 0px);
+    /* Phones: always reserve room for notch / Dynamic Island, even where env() reports 0 */
+    --safe-top: max(env(safe-area-inset-top, 0px), 50px);
     --header-h: calc(64px + var(--safe-top));
+  }
+  @media (min-width: 768px) {
+    :root {
+      --safe-top: env(safe-area-inset-top, 0px);
+    }
   }
   @media (min-width: 1024px) {
     :root {
-      --header-h: calc(68px + var(--safe-top));
+      --header-h: calc(72px + var(--safe-top));
     }
   }
   html {
@@ -41,6 +47,10 @@
   a {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-red);
+    outline-offset: 3px;
   }
   ::selection {
     background: var(--color-red);
@@ -76,8 +86,8 @@
     background-image: conic-gradient(#fff 25%, #0000 0 50%, #fff 0 75%, #0000 0);
     background-size: 12px 12px;
   }
-  .stripes-red {
-    background: repeating-linear-gradient(115deg, var(--color-red) 0 10px, transparent 10px 22px);
+  .hairline-red {
+    background: linear-gradient(90deg, var(--color-red), transparent);
   }
 
   /* Scroll reveal */

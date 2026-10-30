@@ -15,12 +15,15 @@ export default function Categorias() {
           const leader = rankCategory(c.slug)[0]
           const flip = i % 2 === 1
           return (
-            <article key={c.slug} id={c.slug} className={`group grid items-stretch overflow-hidden bg-coal md:grid-cols-2 ${flip ? 'md:[&>*:first-child]:order-2' : ''}`}>
+            <article key={c.slug} id={c.slug} className={`group grid items-stretch overflow-hidden border border-line bg-coal transition-colors hover:border-white/20 md:grid-cols-2 ${flip ? 'md:[&>*:first-child]:order-2' : ''}`}>
               <div data-reveal={flip ? 'right' : 'left'} className="relative min-h-[260px] overflow-hidden">
                 <img src={img(c.photo)} alt={`Categoría ${c.name}`} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
-                <span className="absolute bottom-4 left-6 font-display text-7xl font-black text-white/20 italic">0{i + 1}</span>
-                <div className={`stripes-red absolute top-0 h-full w-14 opacity-90 ${flip ? 'left-0' : 'right-0'}`} />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
+                <div className={`absolute top-0 flex items-stretch ${flip ? 'right-0' : 'left-0'}`}>
+                  <span className="grid w-16 place-items-center bg-red py-3 font-display text-xl font-black text-white">0{i + 1}</span>
+                  <span className="grid place-items-center bg-ink/80 px-3 font-display text-[9px] font-bold tracking-[0.24em] text-white/70 uppercase backdrop-blur-sm">de 07</span>
+                </div>
+                <span className={`absolute bottom-0 h-1 w-1/3 bg-red transition-all duration-700 group-hover:w-full ${flip ? 'right-0' : 'left-0'}`} />
               </div>
               <div data-reveal className="flex flex-col justify-center p-6 sm:p-8 md:p-12">
                 <p className="font-display text-[10px] font-bold tracking-[0.3em] text-red uppercase">

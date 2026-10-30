@@ -67,7 +67,7 @@ export function CategoryRail() {
               >
                 <img src={img(c.photo)} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-60 grayscale transition duration-700 group-hover:scale-105 group-hover:opacity-80 group-hover:grayscale-0" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
-                <span className="absolute top-4 left-5 font-display text-6xl font-black text-white/10 italic transition-colors group-hover:text-red/70">0{i + 1}</span>
+                <span className="absolute top-0 left-0 grid h-10 w-12 place-items-center bg-red font-display text-sm font-black text-white">0{i + 1}</span>
                 <div className="absolute inset-x-0 bottom-0 p-6">
                   <p className="font-display text-[10px] font-bold tracking-[0.28em] text-red uppercase">{c.engine}</p>
                   <h3 className="mt-2 font-display text-2xl font-black text-white uppercase italic">{c.name}</h3>
@@ -88,7 +88,7 @@ export function CategoryRail() {
               >
                 <img src={img(c.photo)} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-60 grayscale transition duration-700 group-hover:scale-105 group-hover:opacity-80 group-hover:grayscale-0" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
-                <span className="absolute top-4 left-5 font-display text-6xl font-black text-white/10 italic transition-colors group-hover:text-red/70">0{i + 1}</span>
+                <span className="absolute top-0 left-0 grid h-10 w-12 place-items-center bg-red font-display text-sm font-black text-white">0{i + 1}</span>
                 <div className="absolute inset-x-0 bottom-0 p-6">
                   <p className="font-display text-[10px] font-bold tracking-[0.28em] text-red uppercase">{c.engine}</p>
                   <h3 className="mt-2 font-display text-2xl font-black text-white uppercase italic">{c.name}</h3>
