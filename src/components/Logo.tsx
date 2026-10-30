@@ -12,7 +12,7 @@ export function Logo({ compact = false, size = 'md' }: { compact?: boolean; size
       {!compact && (
         <span className="leading-none">
           <span className={`block font-display font-black tracking-[0.1em] text-white ${size === 'lg' ? 'text-xl' : 'text-[15px]'}`}>{SITE.name}</span>
-          <span className="mt-1.5 block font-display text-[8px] font-bold tracking-[0.34em] text-celeste uppercase">{SITE.subtitle}</span>
+          <span className="mt-1.5 block font-display text-[8px] font-bold tracking-[0.34em] text-red uppercase">{SITE.subtitle}</span>
         </span>
       )}
     </span>

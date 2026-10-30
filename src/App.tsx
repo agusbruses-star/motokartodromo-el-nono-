@@ -24,7 +24,7 @@ function Hero() {
 
       <div className="absolute top-[calc(var(--header-h)+28px)] right-6 hidden items-center gap-4 md:flex md:right-10" data-reveal="right">
         <span className="text-right font-display leading-tight">
-          <span className="block text-[10px] font-bold tracking-[0.3em] text-celeste uppercase">{SITE.subtitle}</span>
+          <span className="block text-[10px] font-bold tracking-[0.3em] text-red uppercase">{SITE.subtitle}</span>
           <span className="block text-sm font-black tracking-[0.15em] text-white">
             {SITE.name} <span className="text-red">2026</span>
           </span>

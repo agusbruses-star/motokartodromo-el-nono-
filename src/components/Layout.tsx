@@ -9,8 +9,6 @@ function Header({ page }: { page: PageKey }) {
   const [open, setOpen] = useState(false)
   const solid = y > 40 || page !== 'inicio'
   const floating = y > 40
-  const max = typeof document !== 'undefined' ? Math.max(1, document.documentElement.scrollHeight - window.innerHeight) : 1
-  const progress = Math.min(1, y / max)
   // Hide while scrolling down, reveal while scrolling up (with a small threshold).
   const [hidden, setHidden] = useState(false)
   const last = useRef(0)
@@ -88,8 +86,6 @@ function Header({ page }: { page: PageKey }) {
               </span>
             </button>
           </div>
-          {/* Scroll progress along the bottom edge of the bar */}
-          <span className="absolute inset-x-0 bottom-0 h-[2px] origin-left bg-red" style={{ transform: `scaleX(${progress})` }} aria-hidden />
         </div>
 
       {open && (
