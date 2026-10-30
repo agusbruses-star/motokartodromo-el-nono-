@@ -12,12 +12,12 @@ function Hero() {
   return (
     <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-ink pt-[var(--header-h)]">
       <img
-        src={img('foto-13.jpg')}
-        alt="Kart número 30 en plena curva"
-        className="absolute inset-0 -z-20 h-[115%] w-full object-cover object-[60%_40%]"
+        src={img('foto-19.jpg')}
+        alt="Piloto con el kart número 15 listo para salir a pista"
+        className="hero-zoom absolute inset-0 -z-20 h-[115%] w-full object-cover object-[50%_30%]"
         style={{ transform: `translate3d(0, ${y * 0.3}px, 0) scale(${1 + y * 0.0002})` }}
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/95 via-ink/60 to-ink/10" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/50 to-ink/20 lg:bg-gradient-to-r lg:from-ink/95 lg:via-ink/50 lg:to-ink/10" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-1/2 bg-gradient-to-t from-ink to-transparent" />
       <div className="absolute top-[var(--header-h)] right-0 -z-10 hidden h-[calc(100%-var(--header-h))] w-[22vw] origin-top-right skew-x-[-14deg] bg-red/85 mix-blend-multiply lg:block" />
 

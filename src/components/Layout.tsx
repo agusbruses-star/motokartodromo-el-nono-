@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { NAV, SITE, href, type PageKey } from '@/data/site'
 import { Logo } from './Logo'
 import { IconClose, IconFacebook, IconInstagram, IconMail, IconMenu, IconPin, IconYoutube } from './Icons'
@@ -32,17 +32,32 @@ function Header({ page }: { page: PageKey }) {
   const y = useScrollY()
   const [open, setOpen] = useState(false)
   const solid = y > 40 || page !== 'inicio'
+  const floating = y > 40
+  // Hide while scrolling down, reveal while scrolling up (with a small threshold).
+  const [hidden, setHidden] = useState(false)
+  const last = useRef(0)
+  useEffect(() => {
+    const d = y - last.current
+    if (Math.abs(d) < 6) return
+    setHidden(d > 0 && y > 160)
+    last.current = y
+  }, [y])
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
   }, [open])
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 pt-[var(--safe-top)] transition-[background-color,box-shadow] duration-300 ${
-        solid ? 'bg-ink/95 shadow-[0_1px_0_var(--color-line)] backdrop-blur-md' : 'bg-ink/95 lg:bg-transparent lg:bg-gradient-to-b lg:from-ink/80 lg:to-transparent'
-      }`}
-    >
-      <div className="flex h-16 items-stretch lg:h-[68px]">
+    <>
+      {/* Solid strip behind the iPhone notch / status bar so content never shows through */}
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-[55] h-[var(--safe-top)] bg-ink" aria-hidden />
+      <header
+        className={`header-anim fixed inset-x-0 top-[var(--safe-top)] z-50 ${hidden && !open ? 'header-hidden' : ''} ${floating ? 'max-lg:top-[calc(var(--safe-top)+8px)] max-lg:px-3' : ''}`}
+      >
+      <div
+        className={`flex h-16 items-stretch overflow-hidden transition-[background-color,box-shadow,border-radius] duration-500 lg:h-[68px] ${
+          solid ? 'bg-ink/95 shadow-[0_1px_0_var(--color-line)] backdrop-blur-md' : 'bg-ink/80 backdrop-blur-sm lg:bg-transparent lg:bg-gradient-to-b lg:from-ink/80 lg:to-transparent lg:backdrop-blur-none'
+        } ${floating ? 'max-lg:h-14 max-lg:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8),0_0_0_1px_var(--color-line)]' : ''}`}
+      >
         <a href={href()} className="clip-slant-r flex items-center bg-red pr-12 pl-4 sm:pl-8 lg:pr-14" aria-label="Inicio">
           <Logo />
         </a>
@@ -76,6 +91,7 @@ function Header({ page }: { page: PageKey }) {
           <IconMenu />
         </button>
       </div>
+      <span className="header-line block h-[2px] origin-left bg-red" style={{ transform: `scaleX(${floating ? 1 : 0})` }} aria-hidden />
 
       {open && (
         <div className="page-enter fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-ink pt-[var(--safe-top)] pb-[env(safe-area-inset-bottom)] lg:hidden">
@@ -105,6 +121,7 @@ function Header({ page }: { page: PageKey }) {
         </div>
       )}
     </header>
+    </>
   )
 }
 
