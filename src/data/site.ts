@@ -70,13 +70,16 @@ export const CALENDAR: Round[] = [
 
 export const SPONSORS = ['Despertares', 'Avícola Don Jorge', 'RGB Rótulos', 'FD Racing', 'Tu marca aquí', 'Kart Parts NOA']
 
-export const GALLERY = [
-  { src: 'foto-13.jpg', alt: 'Kart número 30 en plena curva' },
-  { src: 'foto-19.jpg', alt: 'Piloto con el kart número 15 en boxes' },
-  { src: 'foto-115.jpg', alt: 'Dos karts sobre la pista de tierra' },
-  { src: 'foto-16.jpg', alt: 'Grilla de karts lista para largar' },
-  { src: 'foto-21.jpg', alt: 'Detalle de la carrocería de un kart con calcos' },
-  { src: 'foto-14.jpg', alt: 'Kart rojo número 45 con piloto de casco verde' },
-  { src: 'foto-30.jpg', alt: 'Mecánicos ajustando el kart número 13' },
-  { src: 'foto-17.jpg', alt: 'Parque cerrado bajo las carpas' },
+// Cada foto indica la fecha del campeonato (round) y si fue en carrera o en prueba.
+export type Photo = { src: string; alt: string; round: number; type: 'carrera' | 'prueba' }
+
+export const GALLERY: Photo[] = [
+  { src: 'foto-13.jpg', alt: 'Kart número 30 en plena curva', round: 5, type: 'carrera' },
+  { src: 'foto-19.jpg', alt: 'Piloto con el kart número 15 en boxes', round: 5, type: 'prueba' },
+  { src: 'foto-115.jpg', alt: 'Dos karts sobre la pista de tierra', round: 4, type: 'prueba' },
+  { src: 'foto-16.jpg', alt: 'Grilla de karts lista para largar', round: 4, type: 'carrera' },
+  { src: 'foto-21.jpg', alt: 'Detalle de la carrocería de un kart con calcos', round: 3, type: 'prueba' },
+  { src: 'foto-14.jpg', alt: 'Kart rojo número 45 con piloto de casco verde', round: 3, type: 'carrera' },
+  { src: 'foto-30.jpg', alt: 'Mecánicos ajustando el kart número 13', round: 2, type: 'prueba' },
+  { src: 'foto-17.jpg', alt: 'Parque cerrado bajo las carpas', round: 1, type: 'carrera' },
 ]
