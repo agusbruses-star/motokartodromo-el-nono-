@@ -1,16 +1,18 @@
-import { SITE } from '@/data/site'
+import { SITE, href } from '@/data/site'
 
-export function Logo({ compact = false }: { compact?: boolean }) {
+export const EMBLEM = href('brand/emblema-el-nono.webp')
+export const EMBLEM_SM = href('brand/emblema-el-nono-160.png')
+
+/** Emblema oficial del Motokartódromo El Nono + wordmark. */
+export function Logo({ compact = false, size = 'md' }: { compact?: boolean; size?: 'md' | 'lg' }) {
+  const s = size === 'lg' ? 'size-16' : 'size-10 lg:size-11'
   return (
-    <span className="flex items-center gap-2.5 select-none">
-      <span className="relative grid size-9 place-items-center bg-white text-ink">
-        <span className="font-display text-lg font-black italic leading-none">K</span>
-        <span className="checker absolute -right-1.5 -bottom-1.5 size-3.5 bg-ink" />
-      </span>
+    <span className="flex items-center gap-3 select-none">
+      <img src={EMBLEM_SM} alt="Emblema de automovilismo El Nono" width={160} height={160} className={`${s} shrink-0 rounded-full object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]`} />
       {!compact && (
         <span className="leading-none">
-          <span className="block font-display text-[15px] font-black tracking-[0.12em] text-white">{SITE.name}</span>
-          <span className="mt-1 block font-display text-[8px] font-bold tracking-[0.42em] text-white/70 uppercase">Racing club</span>
+          <span className={`block font-display font-black tracking-[0.1em] text-white ${size === 'lg' ? 'text-xl' : 'text-[15px]'}`}>{SITE.name}</span>
+          <span className="mt-1.5 block font-display text-[8px] font-bold tracking-[0.34em] text-celeste uppercase">{SITE.subtitle}</span>
         </span>
       )}
     </span>

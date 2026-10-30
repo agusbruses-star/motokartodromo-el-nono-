@@ -4,6 +4,7 @@ import { Layout, RedButton, SectionTitle } from '@/components/Layout'
 import { TrackMap } from '@/components/TrackMap'
 import { CategoryRail } from '@/components/CategoryRail'
 import { FlagAR } from '@/components/Flag'
+import { EMBLEM } from '@/components/Logo'
 import { useScrollY } from '@/components/useScrollEffects'
 import { ScrollRow } from '@/components/ScrollRow'
 
@@ -21,9 +22,15 @@ function Hero() {
       <div className="absolute inset-x-0 bottom-0 -z-10 h-1/2 bg-gradient-to-t from-ink to-transparent" />
       <div className="absolute top-[var(--header-h)] right-0 -z-10 hidden h-[calc(100%-var(--header-h))] w-[22vw] origin-top-right skew-x-[-14deg] bg-red/85 mix-blend-multiply lg:block" />
 
-      <p className="absolute top-24 right-6 hidden font-display text-sm font-black tracking-[0.15em] text-white md:block md:right-10">
-        {SITE.name} <span className="text-red">2026</span>
-      </p>
+      <div className="absolute top-[calc(var(--header-h)+28px)] right-6 hidden items-center gap-4 md:flex md:right-10" data-reveal="right">
+        <span className="text-right font-display leading-tight">
+          <span className="block text-[10px] font-bold tracking-[0.3em] text-celeste uppercase">{SITE.subtitle}</span>
+          <span className="block text-sm font-black tracking-[0.15em] text-white">
+            {SITE.name} <span className="text-red">2026</span>
+          </span>
+        </span>
+        <img src={EMBLEM} alt="" className="size-24 drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)] lg:size-28" />
+      </div>
 
       <div className="mx-auto w-full max-w-7xl px-5 pt-16 pb-16 sm:px-6 md:px-10 md:pb-32" style={{ transform: `translate3d(0, ${y * -0.12}px, 0)`, opacity: Math.max(0, 1 - y / 700) }}>
         <p data-reveal className="font-display text-sm font-bold tracking-[0.24em] text-red uppercase sm:text-base">{SITE.season}</p>

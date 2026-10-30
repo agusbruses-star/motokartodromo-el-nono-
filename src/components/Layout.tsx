@@ -44,8 +44,12 @@ function Header({ page }: { page: PageKey }) {
           style={{ maxWidth: floating ? '80rem' : '100%' }}
         >
           <div className="flex h-full items-stretch">
-            <a href={href()} className="clip-slant-r flex items-center bg-red pr-11 pl-4 transition-[padding] duration-500 sm:pl-6 lg:pr-14" aria-label="Inicio">
-              <Logo />
+            <a href={href()} className="clip-slant-r relative flex items-center bg-red pr-12 pl-3 sm:pl-5 lg:pr-16" aria-label="Inicio · El Nono">
+              {/* dark plate keeps the municipal emblem colors clean; red edge keeps the racing look */}
+              <span className="clip-slant-r absolute inset-y-0 left-0 right-[5px] bg-coal" aria-hidden />
+              <span className="relative">
+                <Logo />
+              </span>
             </a>
             <nav className="ml-auto hidden items-center gap-0.5 pr-3 lg:flex xl:pr-4" aria-label="Principal">
               {NAV.map((n) => {
@@ -91,7 +95,7 @@ function Header({ page }: { page: PageKey }) {
       {open && (
         <div className="page-enter fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-ink pt-[var(--safe-top)] pb-[env(safe-area-inset-bottom)] lg:hidden">
           <div className="flex h-16 shrink-0 items-stretch">
-            <span className="clip-slant-r flex items-center bg-red pr-12 pl-4">
+            <span className="flex items-center pl-3">
               <Logo />
             </span>
             <button className="ml-auto grid w-16 place-items-center text-white" onClick={() => setOpen(false)} aria-label="Cerrar menú">
@@ -125,7 +129,7 @@ function Footer() {
     <footer className="relative border-t-4 border-red bg-black">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-[1.4fr_1fr_1fr] md:px-10">
         <div>
-          <Logo />
+          <Logo size="lg" />
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/55">
             Pista, paddock y comunidad. El campeonato que reúne a pilotos de todo el NOA en siete categorías, fecha a fecha.
           </p>

@@ -4,7 +4,8 @@ export const href = (path = '') => `${BASE}${path}`
 export const img = (name: string) => `${BASE}img/${name}`
 
 export const SITE = {
-  name: 'KARTÓDROMO',
+  name: 'EL NONO',
+  subtitle: 'Motokartódromo',
   season: 'Campeonato 2026',
   email: 'info@kartodromo.com.ar',
   phone: '+54 9 381 000-0000',
