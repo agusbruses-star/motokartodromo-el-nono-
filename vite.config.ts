@@ -17,6 +17,15 @@ export default defineConfig(({ mode }) => {
     build: {
       sourcemap: emitSourcemaps ? 'inline' : false,
       minify: !emitSourcemaps,
+      // Sitio multipágina: cada sección tiene su propio index.html
+      rollupOptions: {
+        input: Object.fromEntries(
+          ['', 'calendario', 'categorias', 'posiciones', 'galeria', 'contacto'].map((p) => [
+            p || 'inicio',
+            path.resolve(__dirname, p, 'index.html'),
+          ]),
+        ),
+      },
     },
     plugins: [
 react(),

@@ -1,3 +1,244 @@
+import { CALENDAR, CATEGORIES, GALLERY, SITE, SPONSORS, href, img } from '@/data/site'
+import { rankCategory } from '@/data/compute'
+import { Layout, RedButton, SectionTitle } from '@/components/Layout'
+import { TrackMap } from '@/components/TrackMap'
+import { CategoryRail } from '@/components/CategoryRail'
+import { FlagAR } from '@/components/Flag'
+import { useScrollY } from '@/components/useScrollEffects'
+
+function Hero() {
+  const y = useScrollY()
+  return (
+    <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-ink">
+      <img
+        src={img('foto-13.jpg')}
+        alt="Kart número 30 en plena curva"
+        className="absolute inset-0 -z-20 h-[115%] w-full object-cover object-[60%_40%]"
+        style={{ transform: `translate3d(0, ${y * 0.3}px, 0) scale(${1 + y * 0.0002})` }}
+      />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/95 via-ink/55 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-1/2 bg-gradient-to-t from-ink to-transparent" />
+      <div className="absolute top-[68px] right-0 -z-10 hidden h-[calc(100%-68px)] w-[22vw] origin-top-right skew-x-[-14deg] bg-red/85 mix-blend-multiply lg:block" />
+
+      <p className="absolute top-24 right-6 hidden font-display text-sm font-black tracking-[0.15em] text-white md:block md:right-10">
+        {SITE.name} <span className="text-red">2026</span>
+      </p>
+
+      <div className="mx-auto w-full max-w-7xl px-6 pt-32 pb-24 md:px-10 md:pb-32" style={{ transform: `translate3d(0, ${y * -0.12}px, 0)`, opacity: Math.max(0, 1 - y / 700) }}>
+        <p data-reveal className="font-display text-sm font-bold tracking-[0.24em] text-red uppercase sm:text-base">{SITE.season}</p>
+        <h1 data-reveal style={{ ['--d' as string]: '100ms' }} className="mt-3 font-display text-[13vw] leading-[0.9] font-black text-white uppercase sm:text-7xl lg:text-[104px]">
+          Pasión
+          <br />
+          <span className="italic">sobre tierra</span>
+        </h1>
+        <p data-reveal style={{ ['--d' as string]: '200ms' }} className="mt-6 max-w-md text-base text-white/75 sm:text-lg">
+          Siete categorías, ocho fechas y un solo objetivo: cruzar primero la bandera a cuadros.
+        </p>
+        <div data-reveal style={{ ['--d' as string]: '300ms' }} className="mt-8 flex flex-wrap gap-3">
+          <RedButton href={href('posiciones/')}>Ver posiciones</RedButton>
+          <RedButton href={href('calendario/')} variant="outline">
+            Calendario
+          </RedButton>
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex" aria-hidden>
+        <span className="font-display text-[9px] tracking-[0.4em] text-white/60 uppercase">Scroll</span>
+        <span className="relative h-10 w-[2px] overflow-hidden bg-white/20">
+          <span className="scroll-cue absolute inset-x-0 top-0 h-1/2 bg-red" />
+        </span>
+      </div>
+    </section>
+  )
+}
+
+function EventStrip() {
+  const next = CALENDAR.find((r) => r.status === 'next') ?? CALENDAR[CALENDAR.length - 1]
+  return (
+    <section className="relative grid lg:grid-cols-[1.35fr_1fr]">
+      <div className="relative bg-white text-ink">
+        <div className="grid gap-8 px-6 py-12 sm:grid-cols-[auto_1fr] md:px-10 lg:py-14 lg:pr-28">
+          <div data-reveal="left">
+            <h2 className="font-display text-2xl font-black tracking-tight">Próxima fecha</h2>
+            <TrackMap className="mt-6 w-64 text-red" />
+          </div>
+          <div data-reveal style={{ ['--d' as string]: '120ms' }} className="self-center">
+            <p className="font-sans text-sm font-semibold text-red italic">
+              {next.weekday} {next.date} · 9:00 hs
+            </p>
+            <h3 className="mt-2 font-display text-xl leading-snug font-black">
+              Fecha {next.round} · {SITE.season}
+              <br />
+              {next.layout}
+            </h3>
+            <p className="mt-3 flex items-center gap-2 text-sm text-ink/60">
+              <FlagAR className="h-3 w-[18px]" />
+              {SITE.address}
+            </p>
+            <div className="mt-6">
+              <RedButton href={href('calendario/')}>Detalles</RedButton>
+            </div>
+          </div>
+        </div>
+        <div className="absolute top-0 -right-px bottom-0 hidden w-28 lg:block" aria-hidden>
+          <div className="h-full w-full bg-[linear-gradient(110deg,white_0_40%,var(--color-red)_40%_48%,white_48%_56%,var(--color-red)_56%_64%,transparent_64%)]" />
+        </div>
+      </div>
+      <div className="relative isolate overflow-hidden bg-graphite">
+        <img src={img('foto-30.jpg')} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30 grayscale" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/70 to-ink/30" />
+        <div data-reveal="right" className="px-6 py-12 md:px-10 lg:py-14">
+          <p className="font-display text-sm font-bold tracking-[0.2em] text-red uppercase">Sobre</p>
+          <h2 className="font-display text-2xl font-black text-white uppercase">El kartódromo</h2>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-white/70">
+            Un circuito de tierra con tres trazados, paddock techado y una comunidad de familias, mecánicos y pilotos que cada fecha llenan la grilla. Del primer día en la
+            Escuela hasta la Súper 150, acá se corre en serio.
+          </p>
+          <div className="mt-6 grid max-w-sm grid-cols-3 gap-4 border-t border-white/15 pt-5">
+            {[
+              ['7', 'Categorías'],
+              ['8', 'Fechas'],
+              ['80+', 'Pilotos'],
+            ].map(([n, l]) => (
+              <div key={l}>
+                <p className="font-display text-2xl font-black text-white">{n}</p>
+                <p className="text-[11px] tracking-[0.18em] text-white/50 uppercase">{l}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Leaders() {
+  return (
+    <section className="relative overflow-hidden bg-ink py-24">
+      <div className="stripes-red absolute top-0 right-0 h-2 w-1/2 opacity-80" />
+      <div className="mx-auto max-w-7xl px-6 md:px-10">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionTitle
+            kicker="Tras 5 fechas"
+            title={
+              <>
+                Líderes del
+                <br />
+                campeonato
+              </>
+            }
+          />
+          <div data-reveal>
+            <RedButton href={href('posiciones/')} variant="outline">
+              Tabla completa
+            </RedButton>
+          </div>
+        </div>
+        <div className="mt-12 border-t border-line">
+          {CATEGORIES.map((c, i) => {
+            const top = rankCategory(c.slug)
+            const l = top[0]
+            return (
+              <a
+                key={c.slug}
+                href={href(`posiciones/?cat=${c.slug}`)}
+                data-reveal
+                style={{ ['--d' as string]: `${i * 60}ms` }}
+                className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 border-b border-line py-4 transition-colors hover:bg-graphite sm:grid-cols-[150px_auto_1fr_auto_auto] sm:gap-6 sm:px-4"
+              >
+                <span className="hidden font-display text-[11px] font-bold tracking-[0.2em] text-white/50 uppercase sm:block">{c.name}</span>
+                <span className="clip-btn grid h-9 w-12 place-items-center bg-red font-display text-sm font-black text-white italic">{l.number}</span>
+                <span className="min-w-0">
+                  <span className="flex items-center gap-3">
+                    <FlagAR />
+                    <span className="truncate font-display text-sm font-bold text-white uppercase sm:text-base">{l.name}</span>
+                  </span>
+                  <span className="mt-1 block text-xs text-white/45 sm:hidden">{c.name}</span>
+                </span>
+                <span className="hidden text-xs text-white/40 md:block">+{top[1]?.gap ?? 0} pts sobre el 2.º</span>
+                <span className="text-right font-display text-lg font-black text-white">
+                  {l.total}
+                  <span className="ml-1 text-[10px] font-bold text-red">PTS</span>
+                </span>
+              </a>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function GalleryStrip() {
+  const y = useScrollY()
+  const pics = GALLERY.slice(0, 6)
+  return (
+    <section className="overflow-hidden bg-coal py-24">
+      <div className="mx-auto mb-12 flex max-w-7xl flex-wrap items-end justify-between gap-6 px-6 md:px-10">
+        <SectionTitle kicker="Galería" title="Desde el paddock" />
+        <div data-reveal>
+          <RedButton href={href('galeria/')}>Ver galería</RedButton>
+        </div>
+      </div>
+      <div className="flex w-max gap-4 px-6" style={{ transform: `translate3d(${-y * 0.12}px,0,0)` }}>
+        {[...pics, ...pics].map((p, i) => (
+          <img key={i} src={img(p.src)} alt={i < pics.length ? p.alt : ''} className={`h-64 w-96 object-cover sm:h-80 sm:w-[30rem] ${i % 2 ? 'mt-10' : ''}`} loading="lazy" />
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function Sponsors() {
+  return (
+    <section className="border-y border-line bg-ink py-14">
+      <p className="text-center font-display text-[11px] font-bold tracking-[0.32em] text-white/50 uppercase">Nuestros sponsors</p>
+      <div className="mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_15%,black_85%,transparent)]">
+        <div className="marquee flex w-max gap-16">
+          {[...SPONSORS, ...SPONSORS].map((s, i) => (
+            <span key={i} className="font-display text-2xl font-black whitespace-nowrap text-white/35 uppercase italic transition-colors hover:text-white">
+              {s}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function CTA() {
+  return (
+    <section className="relative isolate overflow-hidden bg-red">
+      <img src={img('foto-21.jpg')} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-25 mix-blend-multiply" />
+      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-6 py-20 md:flex-row md:items-center md:px-10">
+        <h2 data-reveal className="font-display text-3xl leading-tight font-black text-white uppercase italic sm:text-5xl">
+          ¿Listo para
+          <br />
+          largar?
+        </h2>
+        <div data-reveal style={{ ['--d' as string]: '120ms' }} className="max-w-sm">
+          <p className="text-white/85">Inscripciones abiertas para todas las categorías. Consultá por alquiler de karts y días de prueba.</p>
+          <div className="mt-6">
+            <RedButton href={href('contacto/')} variant="dark">
+              Contactanos
+            </RedButton>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function App() {
-  return <div className="min-h-screen flex items-center justify-center"></div>
+  return (
+    <Layout page="inicio">
+      <Hero />
+      <EventStrip />
+      <CategoryRail />
+      <Leaders />
+      <GalleryStrip />
+      <Sponsors />
+      <CTA />
+    </Layout>
+  )
 }
