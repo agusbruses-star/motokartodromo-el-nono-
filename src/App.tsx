@@ -43,12 +43,6 @@ function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex" aria-hidden>
-        <span className="font-display text-[9px] tracking-[0.4em] text-white/60 uppercase">Scroll</span>
-        <span className="relative h-10 w-[2px] overflow-hidden bg-white/20">
-          <span className="scroll-cue absolute inset-x-0 top-0 h-1/2 bg-red" />
-        </span>
-      </div>
     </section>
   )
 }

@@ -113,10 +113,6 @@
   /* Header: slides in on load, hides on scroll down, returns on scroll up */
   .header-anim {
     animation: header-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
-    transition:
-      transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-      top 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-      padding 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .header-hidden {
     transform: translateY(calc(-100% - 24px));

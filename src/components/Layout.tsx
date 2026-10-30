@@ -1,38 +1,16 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { NAV, SITE, href, type PageKey } from '@/data/site'
 import { Logo } from './Logo'
-import { IconClose, IconFacebook, IconInstagram, IconMail, IconMenu, IconPin, IconYoutube } from './Icons'
+import { IconClose, IconFacebook, IconInstagram, IconMail, IconPin, IconYoutube } from './Icons'
 import { useReveal, useScrollY } from './useScrollEffects'
-
-function ScrollProgress() {
-  const y = useScrollY()
-  const [max, setMax] = useState(1)
-  useEffect(() => {
-    const m = () => setMax(Math.max(1, document.documentElement.scrollHeight - window.innerHeight))
-    m()
-    window.addEventListener('resize', m)
-    const ro = new ResizeObserver(m)
-    ro.observe(document.body)
-    return () => {
-      window.removeEventListener('resize', m)
-      ro.disconnect()
-    }
-  }, [])
-  const p = Math.min(1, y / max)
-  return (
-    <div className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px]" aria-hidden>
-      <div className="relative h-full bg-red" style={{ width: `${p * 100}%` }}>
-        <span className="checker absolute top-1/2 -right-px h-3 w-5 -translate-y-1/2 bg-ink" style={{ backgroundSize: '6px 6px' }} />
-      </div>
-    </div>
-  )
-}
 
 function Header({ page }: { page: PageKey }) {
   const y = useScrollY()
   const [open, setOpen] = useState(false)
   const solid = y > 40 || page !== 'inicio'
   const floating = y > 40
+  const max = typeof document !== 'undefined' ? Math.max(1, document.documentElement.scrollHeight - window.innerHeight) : 1
+  const progress = Math.min(1, y / max)
   // Hide while scrolling down, reveal while scrolling up (with a small threshold).
   const [hidden, setHidden] = useState(false)
   const last = useRef(0)
@@ -51,47 +29,64 @@ function Header({ page }: { page: PageKey }) {
       {/* Solid strip behind the iPhone notch / status bar so content never shows through */}
       <div className="pointer-events-none fixed inset-x-0 top-0 z-[55] h-[var(--safe-top)] bg-ink" aria-hidden />
       <header
-        className={`header-anim fixed inset-x-0 top-[var(--safe-top)] z-50 ${hidden && !open ? 'header-hidden' : ''} ${floating ? 'top-[calc(var(--safe-top)+8px)] px-3 lg:top-[calc(var(--safe-top)+14px)] lg:px-8' : ''}`}
+        className={`header-anim fixed inset-x-0 top-[var(--safe-top)] z-50 transition-[transform,padding] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          hidden && !open ? 'header-hidden' : ''
+        } ${floating ? 'px-3 pt-2 lg:px-6 lg:pt-3' : 'px-0 pt-0'}`}
       >
-      <div
-        className={`flex h-16 items-stretch overflow-hidden transition-[background-color,box-shadow,border-radius] duration-500 lg:h-[72px] ${
-          solid ? 'bg-ink/95 shadow-[0_1px_0_var(--color-line)] backdrop-blur-md' : 'bg-ink/80 backdrop-blur-sm lg:bg-transparent lg:bg-gradient-to-b lg:from-ink/80 lg:to-transparent lg:backdrop-blur-none'
-        } ${floating ? 'mx-auto h-14 max-w-7xl shadow-[0_18px_40px_-14px_rgba(0,0,0,0.85),0_0_0_1px_var(--color-line)] lg:h-16' : ''}`}
-      >
-        <a href={href()} className="clip-slant-r flex items-center bg-red pr-12 pl-4 sm:pl-8 lg:pr-14" aria-label="Inicio">
-          <Logo />
-        </a>
-        <nav className="ml-auto hidden items-center gap-1 pr-4 lg:flex xl:pr-6" aria-label="Principal">
-          {NAV.map((n) => (
-            <a
-              key={n.key}
-              href={href(n.path)}
-              aria-current={page === n.key ? 'page' : undefined}
-              className={`clip-btn px-4 py-1.5 font-display text-[11px] font-bold tracking-[0.18em] uppercase transition-colors ${
-                page === n.key ? 'bg-white text-ink' : 'text-white/80 hover:text-white'
-              }`}
-            >
-              {n.label}
-            </a>
-          ))}
-          <span className="mx-3 h-6 w-px bg-white/15" />
-          <a
-            href={href('contacto/index.html')}
-            className="clip-btn bg-red px-5 py-2 font-display text-[11px] font-bold tracking-[0.18em] text-white uppercase transition-colors hover:bg-white hover:text-ink"
-          >
-            Inscribite
-          </a>
-        </nav>
-        <button
-          className="ml-auto grid w-16 place-items-center bg-red text-white active:bg-red-dark lg:hidden"
-          onClick={() => setOpen(true)}
-          aria-expanded={open}
-          aria-label="Abrir menú"
+        <div
+          className={`relative mx-auto overflow-hidden transition-[max-width,height,background-color,box-shadow,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            floating
+              ? 'h-14 bg-ink/75 shadow-[0_20px_45px_-18px_rgba(0,0,0,0.9),inset_0_0_0_1px_rgba(255,255,255,0.08)] backdrop-blur-xl backdrop-saturate-150 lg:h-16'
+              : solid
+                ? 'h-16 bg-ink/95 shadow-[0_1px_0_var(--color-line)] lg:h-[72px]'
+                : 'h-16 bg-ink/60 backdrop-blur-md lg:h-[72px] lg:bg-transparent lg:backdrop-blur-none'
+          }`}
+          style={{ maxWidth: floating ? '80rem' : '100%' }}
         >
-          <IconMenu />
-        </button>
-      </div>
-      <span className={`header-line block h-[2px] origin-left bg-red ${floating ? 'mx-auto max-w-7xl' : ''}`} style={{ transform: `scaleX(${floating ? 1 : 0})` }} aria-hidden />
+          <div className="flex h-full items-stretch">
+            <a href={href()} className="clip-slant-r flex items-center bg-red pr-11 pl-4 transition-[padding] duration-500 sm:pl-6 lg:pr-14" aria-label="Inicio">
+              <Logo />
+            </a>
+            <nav className="ml-auto hidden items-center gap-0.5 pr-3 lg:flex xl:pr-4" aria-label="Principal">
+              {NAV.map((n) => {
+                const active = page === n.key
+                return (
+                  <a
+                    key={n.key}
+                    href={href(n.path)}
+                    aria-current={active ? 'page' : undefined}
+                    className={`group relative px-3.5 py-2 font-display text-[11px] font-bold tracking-[0.18em] uppercase transition-colors xl:px-4 ${active ? 'text-white' : 'text-white/60 hover:text-white'}`}
+                  >
+                    {n.label}
+                    <span
+                      className={`absolute inset-x-3.5 bottom-0.5 h-[2px] origin-left bg-red transition-transform duration-300 xl:inset-x-4 ${active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}
+                    />
+                  </a>
+                )
+              })}
+              <a
+                href={href('contacto/index.html')}
+                className="clip-btn ml-4 bg-red px-5 py-2.5 font-display text-[11px] font-bold tracking-[0.18em] text-white uppercase transition-colors hover:bg-white hover:text-ink"
+              >
+                Inscribite
+              </a>
+            </nav>
+            <button
+              className="ml-auto grid w-14 place-items-center text-white transition-colors active:bg-white/10 lg:hidden"
+              onClick={() => setOpen(true)}
+              aria-expanded={open}
+              aria-label="Abrir menú"
+            >
+              <span className="flex w-6 flex-col items-end gap-[5px]" aria-hidden>
+                <span className="h-[2px] w-6 bg-white" />
+                <span className="h-[2px] w-4 bg-red" />
+                <span className="h-[2px] w-6 bg-white" />
+              </span>
+            </button>
+          </div>
+          {/* Scroll progress along the bottom edge of the bar */}
+          <span className="absolute inset-x-0 bottom-0 h-[2px] origin-left bg-red" style={{ transform: `scaleX(${progress})` }} aria-hidden />
+        </div>
 
       {open && (
         <div className="page-enter fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-ink pt-[var(--safe-top)] pb-[env(safe-area-inset-bottom)] lg:hidden">
@@ -188,7 +183,6 @@ export function Layout({ page, children }: { page: PageKey; children: ReactNode 
   useReveal()
   return (
     <>
-      <ScrollProgress />
       <Header page={page} />
       <main className="page-enter">{children}</main>
       <Footer />
