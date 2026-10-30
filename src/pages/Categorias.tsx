@@ -26,7 +26,7 @@ export default function Categorias() {
                 <span className={`absolute bottom-0 h-1 w-1/3 bg-red transition-all duration-700 group-hover:w-full ${flip ? 'right-0' : 'left-0'}`} />
               </div>
               <div data-reveal className="flex flex-col justify-center p-6 sm:p-8 md:p-12">
-                <p className="font-display text-[10px] font-bold tracking-[0.3em] text-red uppercase">
+                <p className="font-display text-[10px] font-bold tracking-[0.3em] text-celeste uppercase">
                   {c.engine} · {c.age}
                 </p>
                 <h2 className="mt-3 font-display text-3xl font-black text-white uppercase italic sm:text-4xl">{c.name}</h2>
@@ -37,7 +37,7 @@ export default function Categorias() {
                     <FlagAR />
                     <span className="font-display font-bold text-white uppercase">{leader.name}</span>
                     <span className="ml-auto font-display font-black text-white">
-                      {leader.total} <span className="text-[10px] text-red">PTS</span>
+                      {leader.total} <span className="text-[10px] text-celeste">PTS</span>
                     </span>
                   </div>
                 )}

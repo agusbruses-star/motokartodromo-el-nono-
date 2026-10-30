@@ -4,13 +4,15 @@
 @theme {
   --font-display: 'Orbitron', 'Chakra Petch', system-ui, sans-serif;
   --font-sans: 'Chakra Petch', system-ui, sans-serif;
-  --color-red: #e3120b;
-  --color-red-dark: #a50d08;
-  --color-ink: #0a0a0b;
-  --color-coal: #131315;
-  --color-graphite: #1c1c1f;
-  --color-line: #2a2a2e;
-  --color-celeste: #74acdf;
+  /* Paleta "El Nono": azules del emblema municipal.
+     Los tokens conservan el nombre `red` (= acento principal) para no tocar cada componente. */
+  --color-red: #1f6fe0;
+  --color-red-dark: #1556b8;
+  --color-ink: #050c1c;
+  --color-coal: #0a1730;
+  --color-graphite: #0f2142;
+  --color-line: #1b2f54;
+  --color-celeste: #3cc3ee;
   --color-sol: #f6b40e;
 }
 

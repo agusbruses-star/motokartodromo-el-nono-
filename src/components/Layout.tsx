@@ -103,7 +103,7 @@ function Header({ page }: { page: PageKey }) {
               <a
                 key={n.key}
                 href={href(n.path)}
-                className={`flex min-h-14 items-center gap-4 border-b border-line py-3 font-display text-xl sm:text-2xl font-black uppercase italic ${page === n.key ? 'text-red' : 'text-white'}`}
+                className={`flex min-h-14 items-center gap-4 border-b border-line py-3 font-display text-xl sm:text-2xl font-black uppercase italic ${page === n.key ? 'text-celeste' : 'text-white'}`}
               >
                 <span className="font-sans text-xs text-white/40 not-italic">0{i + 1}</span>
                 {n.label}
@@ -131,7 +131,7 @@ function Footer() {
           </p>
         </div>
         <div>
-          <h3 className="font-display text-[11px] font-bold tracking-[0.28em] text-red uppercase">Secciones</h3>
+          <h3 className="font-display text-[11px] font-bold tracking-[0.28em] text-celeste uppercase">Secciones</h3>
           <ul className="mt-4 grid grid-cols-2 gap-2 text-sm">
             {NAV.map((n) => (
               <li key={n.key}>
@@ -143,14 +143,14 @@ function Footer() {
           </ul>
         </div>
         <div>
-          <h3 className="font-display text-[11px] font-bold tracking-[0.28em] text-red uppercase">Contacto</h3>
+          <h3 className="font-display text-[11px] font-bold tracking-[0.28em] text-celeste uppercase">Contacto</h3>
           <ul className="mt-4 space-y-3 text-sm text-white/70">
             <li className="flex items-center gap-3">
-              <IconMail className="size-4 text-red" />
+              <IconMail className="size-4 text-celeste" />
               {SITE.email}
             </li>
             <li className="flex items-start gap-3">
-              <IconPin className="mt-0.5 size-4 text-red" />
+              <IconPin className="mt-0.5 size-4 text-celeste" />
               {SITE.address}
             </li>
           </ul>
@@ -194,7 +194,7 @@ export function Layout({ page, children }: { page: PageKey; children: ReactNode 
 export function SectionTitle({ kicker, title, className = '', align = 'left' }: { kicker: string; title: ReactNode; className?: string; align?: 'left' | 'center' }) {
   return (
     <div data-reveal className={`${align === 'center' ? 'text-center' : ''} ${className}`}>
-      <p className={`flex items-center gap-3 font-display text-[11px] font-bold tracking-[0.32em] text-red uppercase ${align === 'center' ? 'justify-center' : ''}`}>
+      <p className={`flex items-center gap-3 font-display text-[11px] font-bold tracking-[0.32em] text-celeste uppercase ${align === 'center' ? 'justify-center' : ''}`}>
         <span className="h-[2px] w-8 bg-red" />
         {kicker}
       </p>
@@ -218,7 +218,7 @@ export function PageHero({ kicker, title, photo, children }: { kicker: string; t
       <div className="absolute inset-y-0 right-0 -z-10 hidden w-[18vw] origin-bottom skew-x-[-14deg] translate-x-1/3 bg-red md:block" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-px bg-gradient-to-r from-red via-red/40 to-transparent" />
       <div className="mx-auto max-w-7xl px-5 pt-12 pb-20 sm:px-6 md:px-10 md:pt-28 md:pb-36">
-        <p data-reveal className="flex items-center gap-3 font-display text-xs font-bold tracking-[0.32em] text-red uppercase">
+        <p data-reveal className="flex items-center gap-3 font-display text-xs font-bold tracking-[0.32em] text-celeste uppercase">
           <span className="h-[2px] w-10 bg-red" />
           {kicker}
         </p>

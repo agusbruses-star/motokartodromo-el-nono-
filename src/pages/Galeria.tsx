@@ -83,7 +83,7 @@ export default function Galeria() {
       <section className="mx-auto max-w-7xl px-5 py-12 sm:px-6 sm:py-16 md:px-10">
         <div data-reveal className="space-y-4 border border-line bg-coal p-4 sm:p-6">
           <label className="flex items-center gap-3 border-b-2 border-line bg-ink px-4 transition-colors focus-within:border-red">
-            <span className="text-red">
+            <span className="text-celeste">
               <SearchIcon />
             </span>
             <span className="sr-only">Buscar fotos</span>
@@ -129,7 +129,7 @@ export default function Galeria() {
             {photos.length} {photos.length === 1 ? 'foto' : 'fotos'}
           </p>
           {filtered && (
-            <button onClick={reset} className="min-h-11 font-display text-[11px] font-bold tracking-[0.2em] text-red uppercase hover:text-white">
+            <button onClick={reset} className="min-h-11 font-display text-[11px] font-bold tracking-[0.2em] text-celeste uppercase hover:text-white">
               Limpiar filtros
             </button>
           )}
@@ -159,7 +159,7 @@ export default function Galeria() {
                 </span>
                 <span className="absolute bottom-0 left-0 h-1 w-0 bg-red transition-all duration-500 group-hover:w-full" />
                 <span className="absolute inset-x-4 bottom-4 text-left">
-                  <span className="block font-display text-[10px] font-bold tracking-[0.2em] text-red uppercase">{describe(g)}</span>
+                  <span className="block font-display text-[10px] font-bold tracking-[0.2em] text-celeste uppercase">{describe(g)}</span>
                   <span className="mt-1 block font-display text-xs font-bold text-white uppercase">{g.alt}</span>
                 </span>
               </button>

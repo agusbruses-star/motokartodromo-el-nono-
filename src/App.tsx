@@ -24,16 +24,16 @@ function Hero() {
 
       <div className="absolute top-[calc(var(--header-h)+28px)] right-6 hidden items-center gap-4 md:flex md:right-10" data-reveal="right">
         <span className="text-right font-display leading-tight">
-          <span className="block text-[10px] font-bold tracking-[0.3em] text-red uppercase">{SITE.subtitle}</span>
+          <span className="block text-[10px] font-bold tracking-[0.3em] text-celeste uppercase">{SITE.subtitle}</span>
           <span className="block text-sm font-black tracking-[0.15em] text-white">
-            {SITE.name} <span className="text-red">2026</span>
+            {SITE.name} <span className="text-celeste">2026</span>
           </span>
         </span>
         <img src={EMBLEM} alt="" className="size-24 drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)] lg:size-28" />
       </div>
 
       <div className="mx-auto w-full max-w-7xl px-5 pt-16 pb-16 sm:px-6 md:px-10 md:pb-32" style={{ transform: `translate3d(0, ${y * -0.12}px, 0)`, opacity: Math.max(0, 1 - y / 700) }}>
-        <p data-reveal className="font-display text-sm font-bold tracking-[0.24em] text-red uppercase sm:text-base">{SITE.season}</p>
+        <p data-reveal className="font-display text-sm font-bold tracking-[0.24em] text-celeste uppercase sm:text-base">{SITE.season}</p>
         <h1 data-reveal style={{ ['--d' as string]: '100ms' }} className="mt-3 font-display text-[12.5vw] leading-[0.92] font-black text-white uppercase sm:text-7xl lg:text-[104px]">
           Pasión
           <br />
@@ -90,7 +90,7 @@ function EventStrip() {
         <img src={img('foto-30.jpg')} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30 grayscale" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/70 to-ink/30" />
         <div data-reveal="right" className="px-5 py-10 sm:px-6 md:px-10 lg:py-14">
-          <p className="font-display text-sm font-bold tracking-[0.2em] text-red uppercase">Sobre</p>
+          <p className="font-display text-sm font-bold tracking-[0.2em] text-celeste uppercase">Sobre</p>
           <h2 className="font-display text-2xl font-black text-white uppercase">El kartódromo</h2>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-white/70">
             Un circuito de tierra con tres trazados, paddock techado y una comunidad de familias, mecánicos y pilotos que cada fecha llenan la grilla. Del primer día en la
@@ -160,7 +160,7 @@ function Leaders() {
                 <span className="hidden text-xs text-white/40 md:block">+{top[1]?.gap ?? 0} pts sobre el 2.º</span>
                 <span className="text-right font-display text-lg font-black text-white">
                   {l.total}
-                  <span className="ml-1 text-[10px] font-bold text-red">PTS</span>
+                  <span className="ml-1 text-[10px] font-bold text-celeste">PTS</span>
                 </span>
               </a>
             )

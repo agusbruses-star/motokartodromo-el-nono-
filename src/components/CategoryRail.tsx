@@ -44,7 +44,7 @@ export function CategoryRail() {
       <div className={`${pinned ? 'sticky top-0 h-screen pt-[var(--header-h)]' : 'py-16 sm:py-20'} flex flex-col justify-center overflow-hidden`}>
         <div className="mx-auto mb-8 flex w-full max-w-7xl items-end justify-between gap-6 px-5 sm:px-6 md:px-10">
           <div>
-            <p className="flex items-center gap-3 font-display text-[11px] font-bold tracking-[0.32em] text-red uppercase">
+            <p className="flex items-center gap-3 font-display text-[11px] font-bold tracking-[0.32em] text-celeste uppercase">
               <span className="h-[2px] w-8 bg-red" />7 categorías
             </p>
             <h2 className="mt-3 font-display text-3xl leading-[1.05] font-black text-white uppercase italic sm:text-5xl">
@@ -69,7 +69,7 @@ export function CategoryRail() {
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
                 <span className="absolute top-0 left-0 grid h-10 w-12 place-items-center bg-red font-display text-sm font-black text-white">0{i + 1}</span>
                 <div className="absolute inset-x-0 bottom-0 p-6">
-                  <p className="font-display text-[10px] font-bold tracking-[0.28em] text-red uppercase">{c.engine}</p>
+                  <p className="font-display text-[10px] font-bold tracking-[0.28em] text-celeste uppercase">{c.engine}</p>
                   <h3 className="mt-2 font-display text-2xl font-black text-white uppercase italic">{c.name}</h3>
                   <p className="mt-2 text-sm text-white/60">{c.age}</p>
                   <span className="mt-5 inline-block h-[3px] w-10 bg-red transition-all duration-500 group-hover:w-full" />
@@ -90,7 +90,7 @@ export function CategoryRail() {
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
                 <span className="absolute top-0 left-0 grid h-10 w-12 place-items-center bg-red font-display text-sm font-black text-white">0{i + 1}</span>
                 <div className="absolute inset-x-0 bottom-0 p-6">
-                  <p className="font-display text-[10px] font-bold tracking-[0.28em] text-red uppercase">{c.engine}</p>
+                  <p className="font-display text-[10px] font-bold tracking-[0.28em] text-celeste uppercase">{c.engine}</p>
                   <h3 className="mt-2 font-display text-2xl font-black text-white uppercase italic">{c.name}</h3>
                   <p className="mt-2 text-sm text-white/60">{c.age}</p>
                   <span className="mt-5 inline-block h-[3px] w-10 bg-red transition-all duration-500 group-hover:w-full" />

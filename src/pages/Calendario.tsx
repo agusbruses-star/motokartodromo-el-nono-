@@ -19,11 +19,11 @@ export default function Calendario() {
             kicker="Fechas 1–8"
             title={
               <>
-                Temporada <span className="text-red">2026</span>
+                Temporada <span className="text-celeste">2026</span>
               </>
             }
           />
-          <p data-reveal className="mt-4 font-display text-[11px] font-bold tracking-[0.24em] text-red uppercase">
+          <p data-reveal className="mt-4 font-display text-[11px] font-bold tracking-[0.24em] text-celeste uppercase">
             Domingos · Pruebas 8:00 · Finales desde 13:00
           </p>
           <ol className="mt-8 border-t border-line">

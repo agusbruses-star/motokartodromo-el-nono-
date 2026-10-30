@@ -94,7 +94,7 @@ export default function Posiciones() {
       <section key={cat} className="mx-auto max-w-7xl px-5 py-12 sm:px-6 sm:py-16 md:px-10">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-end">
           <div data-reveal>
-            <p className="font-display text-[11px] font-bold tracking-[0.3em] text-red uppercase">
+            <p className="font-display text-[11px] font-bold tracking-[0.3em] text-celeste uppercase">
               {category.engine} · {category.age}
             </p>
             <h2 className="mt-3 font-display text-[2.2rem] leading-none font-black break-words text-white uppercase italic sm:text-6xl">{category.name}</h2>
@@ -127,7 +127,7 @@ export default function Posiciones() {
                   return (
                     <div key={i} className={`py-1 text-center ${p === 25 ? 'bg-red/20' : 'bg-white/[0.04]'}`}>
                       <p className="text-[9px] text-white/35">F{i + 1}</p>
-                      <p className={`text-xs tabular-nums ${p === 25 ? 'font-bold text-red' : future ? 'text-white/20' : 'text-white/80'}`}>{future ? '·' : p == null ? '—' : p}</p>
+                      <p className={`text-xs tabular-nums ${p === 25 ? 'font-bold text-celeste' : future ? 'text-white/20' : 'text-white/80'}`}>{future ? '·' : p == null ? '—' : p}</p>
                     </div>
                   )
                 })}
@@ -178,7 +178,7 @@ export default function Posiciones() {
                     const p = r.points[i]
                     const future = i >= played
                     return (
-                      <td key={i} className={`py-3 text-center tabular-nums ${p === 25 ? 'font-bold text-red' : 'text-white/70'}`}>
+                      <td key={i} className={`py-3 text-center tabular-nums ${p === 25 ? 'font-bold text-celeste' : 'text-white/70'}`}>
                         {future ? <span className="text-white/15">·</span> : p == null ? <span className="text-white/25">—</span> : p}
                       </td>
                     )

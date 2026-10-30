@@ -32,7 +32,7 @@ export default function Contacto() {
         <div className="space-y-4">
           {info.map(({ I, l, v }, i) => (
             <div key={l} data-reveal="left" style={{ ['--d' as string]: `${i * 70}ms` }} className="flex items-start gap-4 border-l-2 border-red bg-coal p-5 break-words sm:gap-5 sm:p-6">
-              <I className="mt-0.5 size-5 text-red" />
+              <I className="mt-0.5 size-5 text-celeste" />
               <div>
                 <p className="font-display text-[10px] font-bold tracking-[0.28em] text-white/45 uppercase">{l}</p>
                 <p className="mt-1 text-white">{v}</p>
