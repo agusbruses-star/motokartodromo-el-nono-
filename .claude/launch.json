@@ -1,0 +1,15 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "el-nono",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "fuente/serve.js",
+        "el-nono-sitio",
+        "4178"
+      ],
+      "port": 4178
+    }
+  ]
+}
